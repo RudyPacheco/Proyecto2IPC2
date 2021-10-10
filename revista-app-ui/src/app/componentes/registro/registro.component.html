@@ -1,1 +1,30 @@
-<p>registro works!</p>
+<div class="container" id="container">
+    <div class="form-container sign-in-container">
+        <form [formGroup]="registroForm" (ngSubmit)="registrar(registroForm.value)" >
+            <h1>Crear Cuenta</h1>
+            <input type="text" formControlName="nombre" placeholder="Nombre" />
+            <input type="text" formControlName="apellido" placeholder="Apellido" />
+            <input type="text" formControlName="usuario" placeholder="Usuario" />
+            <input type="password" formControlName="contrasenia" placeholder="Password" />
+            <div class="btn-group">
+                <select formControlName="tipoCuenta" class="form-select">
+                    <option value="null" >Tipo de cuenta</option>
+                    <option value="1" >Susctriptor</option>
+                    <option value="2" >Editor</option>
+                </select>
+              </div>
+            <button type="submit" [disabled]="registroForm.invalid">Registrarse</button>
+        </form>
+      </div>
+    <div class="overlay-container">
+      <div class="overlay">
+        <div class="overlay-panel overlay-right">
+          <h1>Bienvenido</h1>
+          <span>Mas que un sitio de revistas, una comunidad</span>
+          <span>¿Ya tienes cuenta?</span>
+          <a class="ghost" href="login">Iniciar Sesion</a>
+        </div>
+      </div>
+    </div>
+  </div>
+3  

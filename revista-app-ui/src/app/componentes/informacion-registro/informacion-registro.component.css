@@ -1,0 +1,20 @@
+textarea{
+    resize: none;
+    padding: 0;
+    height: 280px;
+    width: 85%;
+    margin-left: 5%;
+    margin-right: 5%;
+    border-radius: 10px;
+    
+}
+
+
+a{
+    text-align: center;
+}
+
+.cate{
+    
+    margin-left: 50%;
+}

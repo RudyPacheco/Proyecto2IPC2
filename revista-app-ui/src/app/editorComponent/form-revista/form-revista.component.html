@@ -1,0 +1,39 @@
+<app-header-editor></app-header-editor>
+<div class="container contact-form">
+    <form >
+        <h3>Nueva revista</h3>
+        <p class="text-center" >Llene el formulario para poder publicar una nueva revista</p>
+       <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <input type="text" name="txtName" class="form-control" placeholder="Nombre de la revista" value="" />
+                </div>
+                <div class="form-group">
+                    <p>Categorias</p>
+                </div>
+                <div class="form-group">
+                    <input type="number" name="precio" class="form-control" placeholder=" $ Precio suscripcion" value="" />
+                    <p class="fw-norma">Indique el precio, si indica 0 su revista sera de suscripcion gratuita</p>
+                </div>                
+                <div class="form-group">
+                    <input type="submit"  name="btnSubmit" class="btnContact" value="Publicar Revista" />
+                    
+                </div>
+                
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <textarea name="txtMsg" class="form-control" placeholder="Descripcion" style="width: 100%; height: 300px;"></textarea>
+                </div>
+                <div class="file-input">
+                    <label for="exampleFormControlFile1">Seleccione la revista</label>
+                    <input type="file" class="file" id="exampleFormControlFile1">
+                </div>
+
+            </div>
+        </div>
+    </form>
+</div>
+
+
+<app-footer-editor></app-footer-editor>

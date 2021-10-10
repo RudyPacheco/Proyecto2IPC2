@@ -1,0 +1,16 @@
+<!-- As a link -->
+<nav class="navbar navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand">Dynamo Journals</a>
+    </div>
+  </nav>
+  <h1 class="font-monospace text-center fw-bolder">Seleccione las etiquetas de su interes</h1>
+<div>
+    
+    <app-tag-selector [options]="options" [formControl]="chipsControl">
+        
+    </app-tag-selector>
+
+  
+    <button class="btn btn-success" (click)="imprimir()">Continuar</button>
+</div>

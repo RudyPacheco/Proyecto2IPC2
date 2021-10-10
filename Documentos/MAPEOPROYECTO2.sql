@@ -1,6 +1,17 @@
 
 CREATE DATABASE revistas_digitales;
 
+CREATE TABLE usuario(
+nombre VARCHAR(40) NOT NULL,
+apellido VARCHAR(40) NOT NULL,
+nombre_usuario VARCHAR(20) NOT NULL,
+contrasenia VARCHAR(12) NOT NULL,
+codigo_area INT NOT NULL,
+CONSTRAINT PK_USUARIO PRIMARY KEY(nombre_usuario)
+);
+
+
+
 CREATE TABLE administrador(
 nombre_usuario VARCHAR(20) NOT NULL,
 nombre VARCHAR(45) NOT NULL,

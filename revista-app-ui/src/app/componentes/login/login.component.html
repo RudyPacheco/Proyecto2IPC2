@@ -1,30 +1,27 @@
-
 <div class="container" id="container">
-	<div class="form-container sign-up-container">
-		<form action="#">
-			<h1>Create Account</h1>
-			<input type="text" placeholder="Name" />
-			<input type="email" placeholder="Email" />
-			<input type="password" placeholder="Password" />
-			<button>Iniciar Sesion</button>
-		</form>
-	</div>
-	<div class="form-container sign-in-container">
-		<form action="#">
-			<h1>Iniciar Sesion</h1>
-			<input type="email" placeholder="Usuario" />
-			<input type="password" placeholder="Contraseña" />
-			<button>Iniciar Sesion</button>
-		</form>
-	</div>
-	<div class="overlay-container">
-		<div class="overlay">
-			<div class="overlay-panel overlay-right">
-				<h1>Bienenido de vuelta</h1>
-				<span>Mas que un sitio de revistas, una comunidad</span>
-				<button class="ghost" id="signUp">Registrarse</button>
-			</div>
-		</div>
-	</div>
+  <div class="form-container sign-in-container">
+    <form [formGroup]="loginForm" (ngSubmit)="enviar(loginForm.value)">
+      <h1>Iniciar Sesion</h1>
+      <input [ngClass]="{'border-danger': loginForm.controls.nombre.valid && !loginForm.controls.nombre.pristine,'form-control':true}" formControlName="nombre" type="text" placeholder="Usuario" required />
+      <div [hidden]="loginForm.controls.nombre.valid || loginForm.controls.nombre.pristine" class="alert alert-danger" role="alert">
+        El nombre esta vacio
+      </div>
+      <input formControlName="contrasenia" type="password" placeholder="Contraseña" />
+      <div [hidden]="loginForm.controls.contrasenia.valid || loginForm.controls.contrasenia.pristine" class="alert alert-danger" role="alert">
+       Contraseña vacia
+      </div>
+      <button type="submit" [disabled]="loginForm.invalid">Iniciar Sesion</button>
+    </form>
+  </div>
+  <div class="overlay-container">
+    <div class="overlay">
+      <div class="overlay-panel overlay-right">
+        <h1>Bienenido de vuelta</h1>
+        <span>Mas que un sitio de revistas, una comunidad</span>
+		<span>¿Aun no tienes cuenta?</span>
+        <a class="ghost" href="registro">Registrarse</a>
+      </div>
+    </div>
+  </div>
 </div>
 
