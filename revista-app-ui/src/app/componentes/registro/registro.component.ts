@@ -13,7 +13,7 @@ import { UsuarioNuevo } from 'src/models/register/newUsuario';
 export class RegistroComponent implements OnInit {
 
   registroForm!:FormGroup;
-
+  usuarioNuevo !: UsuarioNuevo;
 
   constructor(private router:Router, private builder:FormBuilder,private registroService:registroServices) {
     this.registroForm = this.builder.group({
@@ -28,8 +28,11 @@ export class RegistroComponent implements OnInit {
 
    registrar(values:any){
    if (this.registroForm.valid) {
-     console.log(values)
+     console.log(values);
+  
      this.registroService.generarRegistro(this.registroForm.value).subscribe((create: UsuarioNuevo)=>{
+
+     
       this.registroForm.reset({
         nombre:'',
         apellido:'',
@@ -37,19 +40,24 @@ export class RegistroComponent implements OnInit {
         contrasenia:'',
         tipoCuenta:null,
       });
-      console.log("created");
-      console.log(create);
+     // console.log("created");
+     // console.log(create);
+    
       this.registroService.setUsuario(create);
+ 
+      console.log(this.registroService.getUsuario().tipoCuenta);
+      //console.log(create.Nombre);
       console.log(this.registroService.getUsuario());
-      console.log(create.categoria);
-
-      this.router.navigate(['login']);
+   
+      this.router.navigate(['informacion']);
     
      },
+
+     
      (error: any)=>{
       console.log("error")
      });
-     //this.router.navigate(['informacion'])
+
    }
    }
 

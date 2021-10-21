@@ -1,23 +1,26 @@
 export class UsuarioNuevo {
    
 
-    //private nombre: string;
-    //private apellido: string;
-    //private usuario: string;
-    //private contrasenia: string;
-     //categoria: number;
+     nombre: string;
+    apellido: string;
+     usuario: string;
+     contrasenia: string;
+     tipoCuenta: number;
  
 
-    constructor( private _nombre:string,apellido:string,usuario:string,contrasenia:string,private _categoria: number) {
-       // this.nombre=nombre;
-        //this.apellido=apellido;
-        //this.usuario=usuario;
-        //this.contrasenia=contrasenia;
-        //this.categoria=categoria;
+    constructor( private nombreR:string,apellido:string,usuario:string,contrasenia:string,private categoria: number) {
+        this.nombre=nombreR;
+        this.apellido=apellido;
+        this.usuario=usuario;
+        this.contrasenia=contrasenia;
+        this.tipoCuenta=categoria;
 
-        
-
+      
     }
+
+   
+  
+
 
    // public getNombre(){
      //   return this.nombre;
@@ -35,21 +38,6 @@ export class UsuarioNuevo {
   //      return this.contrasenia;
    // }
 
- 
-
-    public get Nombre(): string {
-        return this._nombre;
-    }
-
     
-    public get categoria(): number {
-        return this._categoria;
-    }
-    public set categoria(value: number) {
-        this._categoria = value;
-    }
-
-
-
 
 }

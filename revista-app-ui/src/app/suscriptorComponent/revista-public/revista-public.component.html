@@ -1,3 +1,37 @@
 <app-header-sub></app-header-sub>
-<p>revista-public works!</p>
+
+
+
+<body>
+    <div class="conteiner">
+        <div class="card-header">
+            <h2 class="h1 text-center">Revistas</h2>
+            <table class="table table-success table-striped">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Titulo Revista</th>
+                    <th></th> 
+                    <th></th>                    
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let revista of revistasP; let i= index">
+                    <th scope="row">{{i+1}}</th>
+                    <td>{{revista.nombreRevista}}</td>
+                    <td>
+                      
+                    </td>
+                    <td>
+                      
+                      <button data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="selectElement(revista)" class="btn btn-info">Previsualizar</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+    </div>
+</body>
+
+<app-previ-revista></app-previ-revista>
 <app-footer-sub></app-footer-sub>

@@ -9,6 +9,7 @@ import { MatChip, MatChipList } from '@angular/material/chips';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { map } from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
+import { etiquetasService } from 'src/app/services/informacion/etiquetas.service';
 @UntilDestroy()
 @Component({
   selector: 'app-tag-selector',
@@ -35,7 +36,7 @@ export class TagSelectorComponent implements OnInit,AfterViewInit,ControlValueAc
 
   disabled = false;
 
-  constructor() {}
+  constructor(private tagService:etiquetasService) {}
 
   writeValue(value: string[]): void {
     // When form value set when chips list initialized

@@ -14,6 +14,10 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
 
+  mensaje: string="";
+  showError: boolean= false;
+
+
   constructor(private builder: FormBuilder,private loginServices: loginServices ,private router: Router) {
     this.loginForm = this.builder.group({
       nombre: ['', Validators.required],
@@ -26,31 +30,45 @@ export class LoginComponent implements OnInit {
       console.log(values);
       this.loginServices.createLogin(this.loginForm.value)
     .subscribe((create: usuarioLoged) =>{
-        this.loginForm.reset({
-          nombre: '',
-          contasenia: '',
-        });
+       this.resetForm();
         let xd = create;
       console.log("created ");
       console.log(create);
+      console.log(create.token);
+
         if (create.token!==undefined) {
           this.loginServices.agregarToken(create.token);
+          this.loginServices.agregarUsuario(create);
       console.log("TOKEN AP");
      // console.log(create.token)
       console.log(this.loginServices.getToken())
-      this.router.navigate(['inicioED'])
+          if (create.tipoCuenta==1) {
+            this.router.navigate(['inicioSUB']);
+          }else if (create.tipoCuenta==2) {
+            this.router.navigate(['inicioED']);
+          }
         }else{
           console.log("error token")
         }
-
-      
       } ,
       (error: any) => {
         console.log("error"+error);
+        this.showError = true;
+        this.mensaje= error.error.mensaje;
+        this.resetForm();
       });
       
     }
   }
 
   ngOnInit(): void {}
+
+  resetForm(){
+    this.loginForm.reset({
+      nombre: '',
+      contasenia: '',
+    });
+  }
+
+
 }

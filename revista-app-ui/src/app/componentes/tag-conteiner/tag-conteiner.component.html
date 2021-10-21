@@ -11,6 +11,12 @@
         
     </app-tag-selector>
 
+    <label for="operation">Etiquetas</label>
+    <select name="operation" class="custom-select d-block w-100" id="operation"  >
+        <option *ngFor="let option of options" [value]="option" >{{option}}</option>
+      </select>
+     
+
   
-    <button class="btn btn-success" (click)="imprimir()">Continuar</button>
+<button class="btn btn-success" (click)="imprimir()">Continuar</button>
 </div>

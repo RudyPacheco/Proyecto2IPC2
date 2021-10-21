@@ -14,6 +14,7 @@ export class loginServices {
 
     
      TOKEN: string ="";
+     usuario!: usuarioLoged;
     readonly APY_URL = "http://localhost:8080/revistas-app-backend/";
 
     
@@ -38,6 +39,15 @@ export class loginServices {
     public eliminarToken(){
         this.TOKEN="";
     }
+
+    public agregarUsuario(usuario: usuarioLoged){
+        this.usuario=usuario;
+    }
+
+    public getUsuario(){
+        return this.usuario;
+    }
+
 
 
 }

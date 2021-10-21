@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { loginServices } from 'src/app/services/login/login.services';
 
 @Component({
   selector: 'app-header-editor',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderEditorComponent implements OnInit {
 
-  constructor() { }
+  @Input() nombreUsuario:string="";
+
+  constructor(private loginService:loginServices,private router:Router) { }
 
   ngOnInit(): void {
   }
+
+  salir(){
+    this.loginService.eliminarToken();
+    this.router.navigate(['login']);
+  }
+
 
 }

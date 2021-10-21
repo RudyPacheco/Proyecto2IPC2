@@ -1,8 +1,9 @@
-<app-header-editor></app-header-editor>
+<app-header-editor [nombreUsuario]="usuarioLoged.nombre" ></app-header-editor>
 <div class="prueba" >
     <h1 class="font-monospace fw-bold text-center">Dynamo Journal</h1>
     <p class=" fw-normal text-center">Mas que un sitio web de revistas, una comunidad entera </p>
 
 </div>
 <img src="./assets/img/HomeEditor.jpg" class="img-fluid"/>
+<button (click)="impirmir()" >Presionar</button>
 <app-footer-editor></app-footer-editor>

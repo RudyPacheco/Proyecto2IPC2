@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { loginServices } from 'src/app/services/login/login.services';
 
 @Component({
   selector: 'app-header-sub',
@@ -7,9 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderSubComponent implements OnInit {
 
-  constructor() { }
+  @Input() nombreUsuario:string="";
+
+
+  constructor(private router:Router,private loginService:loginServices) { }
 
   ngOnInit(): void {
+  }
+
+
+  salir(){
+    this.loginService.eliminarToken();
+    
+    this.router.navigate(['login']);
+  
   }
 
 }

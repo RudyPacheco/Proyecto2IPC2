@@ -30,6 +30,8 @@ import { FormEdicionComponent } from './editorComponent/form-edicion/form-edicio
 import { TagSelectorComponent } from './componentes/tag-selector/tag-selector.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TagConteinerComponent } from './componentes/tag-conteiner/tag-conteiner.component';
+import { PreviRevistaComponent } from './componentes/previ-revista/previ-revista.component';
+import { EdicionRevistaComponent } from './editorComponent/edicion-revista/edicion-revista.component';
 
 
 
@@ -52,12 +54,13 @@ import { TagConteinerComponent } from './componentes/tag-conteiner/tag-conteiner
     FormEdicionComponent,
     TagSelectorComponent,
     TagConteinerComponent,
+    PreviRevistaComponent,
+    EdicionRevistaComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    FlashMessagesModule.forRoot(),
     HttpClientModule,
     BrowserAnimationsModule,
     MatChipsModule,

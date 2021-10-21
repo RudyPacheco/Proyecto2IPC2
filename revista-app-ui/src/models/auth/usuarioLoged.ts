@@ -1,13 +1,24 @@
 export class usuarioLoged {
     nombre: string;
-    contrasenia: string;
+    apellido:string;
+    usuario:string;
+    informacion:string;
+    etiquetasInteres:string[];
+    //contrasenia: string;
+    tipoCuenta: number;
     token: string;
 
 
 
-    constructor(nombre: string , contrasenia: string,token: string) {
+
+    constructor(nombre: string,apellido:string,usuario:string,informacion:string,etiquetas:string[] ,tipocuenta:number,token: string) {
         this.nombre=nombre;
-        this.contrasenia=contrasenia;
+        this.apellido=apellido;
+        this.usuario=usuario;
+        this.informacion=informacion;
+        this.etiquetasInteres=etiquetas;
+       // this.contrasenia=contrasenia;
+        this.tipoCuenta=tipocuenta;
         this.token=token;
     }
 
@@ -19,14 +30,17 @@ export class usuarioLoged {
         this.nombre=nombre;
     }
 
-    get contraseniaU() {
-        return this.contrasenia;
-    }
+    // get contraseniaU() {
+    //     return this.contrasenia;
+    // }
 
-    set contraseniaU(contrasenia : string) {
-        this.contrasenia=contrasenia;
-    }
+    // set contraseniaU(contrasenia : string) {
+    //     this.contrasenia=contrasenia;
+    // }
 
+    get Token(){
+        return this.token;
+    }
     getAutentication() {
         return this.token;
     }

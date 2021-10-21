@@ -2,11 +2,12 @@ export class UsuarioInfo {
 
     private nombreUsuario:string;
     private informacionUsuario:string;
+            etiquetasUsuario:String[];
 
-    constructor(nombre:string,info:string) {
+    constructor(nombre:string,info:string,tags:string[]) {
         this.nombreUsuario=nombre;
         this.informacionUsuario=info;
-    
+        this.etiquetasUsuario=tags;
     }
 
     public getNombre(){

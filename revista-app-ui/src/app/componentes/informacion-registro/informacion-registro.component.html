@@ -8,15 +8,33 @@
     </div>
   </nav>
 <h1 class="text-center fw-bold">Cuentanos sobre ti </h1>
-<h5 class="fw-bold text-center">Añade una descripcion para tu perfil(hobbies,gustos..)</h5>
+<h4 class="fw-bold text-center">Añade una breve descripcion para tu perfil(hobbies,gustos..)</h4>
+
+<form [formGroup]="infoFomr"(ngSubmit)="enviar(infoFomr.value)" > 
+  <textarea class="text-area" formControlName="textarea" ></textarea>
+<br>
+<div>
+  
+  <label for="operation">Etiquetas</label>
+  <select name="operation" formControlName="etiquetaS" class="custom-select d-block w-100" id="operation" (click)="imprimir()"  >
+    <option *ngFor="let option of options"   [value]="option" > {{option}}</option>
+  </select>
+
+</div>
+<div>
+  <label for="operation">Etiquetas seleccionadas</label>
+  <p>{{tagsSelected}}</p>
+  <div *ngFor="let tag of tagsSelected"> 
+    {{tag}}
+  </div>
+</div>
 
 
-<input type="text" size=60 style="width:700px">
+  <button type="submit" class="btn btn-dark">Registrar</button>
+ 
+</form>
 
-    <div>
-       
-        
-    </div>
-    <button (click)="enviar()" class="btn btn-dark">Registrar</button>
+
+
 
 

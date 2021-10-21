@@ -1,28 +1,31 @@
 <app-header-editor></app-header-editor>
 <div class="container contact-form">
-    <form >
+    <form [formGroup]="edicionForm" (ngSubmit)="publicarEdicion()"  >
         <h3>Nueva edicion</h3>
         <p class="text-center" >Llene el formulario para poder publicar una nueva edicion</p>
        <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="">Nombre Revista</label>
+                    <label for=""> {{revistaSelect.nombreRevista}} </label>
                 </div>
                 <div class="form-group">
                     
-                    <input type="date" name="precio" class="form-control" placeholder=" $ Precio suscripcion" value="" />
-                    <p class="fw-norma">Indique la fecha a la que pertenece la edicion</p>
+                        <label>Fecha de creacion</label>
+                        <input formControlName="fechaCreacion" type="date">
+                    
                 </div>                
                 <div class="form-group">
-                    <input type="submit" name="btnSubmit" class="btnContact" value="Publicar Edicion" />
-                    
+          
+                    <button type="submit" [disabled]="edicionForm.invalid">Publicar revista</button>
                 </div>
                 
             </div>
             <div class="col-md-6">
                 <div class="file-input">
-                    <label for="exampleFormControlFile1">Seleccione la revista</label>
-                    <input type="file" class="file" id="exampleFormControlFile1">
+                    <div class="col-md-4">
+                        <label for="operation">Archivo PDF de la revista</label>
+                        <input type="file" (change)="fileUploadInAngular($event)" />
+                    </div>
                 </div>
 
             </div>

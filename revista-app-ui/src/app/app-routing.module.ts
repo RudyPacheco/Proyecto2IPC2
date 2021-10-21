@@ -1,10 +1,11 @@
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { InformacionRegistroComponent } from './componentes/informacion-registro/informacion-registro.component';
 import { LoginComponent } from './componentes/login/login.component';
 import { RegistroComponent } from './componentes/registro/registro.component';
 import { TagConteinerComponent } from './componentes/tag-conteiner/tag-conteiner.component';
 import { TagSelectorComponent } from './componentes/tag-selector/tag-selector.component';
+import { EdicionRevistaComponent } from './editorComponent/edicion-revista/edicion-revista.component';
 import { FormEdicionComponent } from './editorComponent/form-edicion/form-edicion.component';
 import { FormRevistaComponent } from './editorComponent/form-revista/form-revista.component';
 import { InicioEditorComponent } from './editorComponent/inicio-editor/inicio-editor.component';
@@ -28,7 +29,8 @@ const routes: Routes = [
   {path:'Mis/Revistas',component:MiRevistaComponent},
   {path:'Nueva-Revista',component:FormRevistaComponent},
   {path:'Nueva-Edicion',component:FormEdicionComponent},
-  {path:'TagSelector',component:TagConteinerComponent}
+  {path:'TagSelector',component:TagConteinerComponent},
+  {path:'Edicones',component:EdicionRevistaComponent}
 ];
 
 @NgModule({

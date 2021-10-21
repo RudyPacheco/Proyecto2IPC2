@@ -5,6 +5,7 @@
  */
 package modelo;
 
+import backend.controlUsuario;
 import com.mycompany.revistas.app.backend.usuario;
 import conexion.conexionDB;
 import java.sql.Connection;
@@ -22,8 +23,8 @@ public class usuarioDAO {
     private ResultSet result = null;
     private Connection conexion = null;
 
-    public usuario validarUsuario(String nombre, String contrasenia) {
-        usuario temp = new usuario();
+    public usuarioLoged validarUsuario(String nombre, String contrasenia) {
+        usuarioLoged temp = new usuarioLoged();
         String consulta = "SELECT * FROM usuario WHERE nombre_usuario=? and contrasenia=?";
 
         try {
@@ -33,8 +34,11 @@ public class usuarioDAO {
             query.setString(2, contrasenia);
             result = query.executeQuery();
             while (result.next()) {
-                temp.setNombre(result.getString("nombre_usuario"));
-                temp.setContrasenia(result.getString("contrasenia"));
+                temp.setNombre(result.getString("nombre"));
+                temp.setApellido(result.getString("apellido"));
+                temp.setUsuario(result.getString("nombre_usuario"));
+                temp.setInformacion(result.getString("informacion"));
+                temp.setTipoCuenta(result.getInt("codigo_area"));
             }
         } catch (SQLException ex) {
             System.out.println("error en bucarUsuario");
@@ -66,7 +70,9 @@ public class usuarioDAO {
         return temp;
     }
 
-    public void guardarUsuario(UsuarioNuevo usuario) {
+    public int guardarUsuario(UsuarioNuevo usuario) {
+
+        int cambios = 0;
         String sql = "INSERT INTO usuario ( nombre,apellido, nombre_usuario, contrasenia, codigo_area) VALUES ( ?,?,?, ?, ?)";
         int registros = 0;
         try {
@@ -75,16 +81,60 @@ public class usuarioDAO {
             query.setString(1, usuario.getNombre());
             query.setString(2, usuario.getApellido());
             query.setString(3, usuario.getUsuario());
-            query.setString(4, usuario.getContrasenia());
+            query.setString(4, controlUsuario.getMD5(usuario.getContrasenia()));
             query.setInt(5, usuario.getTipoCuenta());
-
+            cambios = query.executeUpdate();
         } catch (SQLException e) {
             System.out.println("Error al agregar");
             e.printStackTrace(System.out);
+        } finally {
+            cierre();
         }
-      
+        return cambios;
     }
 
+    public int guardarInformacion(usuarioInformacion usuario) {
+        int cambios = 0;
+        String sql = "UPDATE usuario SET informacion=? WHERE nombre_usuario=?";
+        int registros = 0;
+        try {
+            conexion = conexionDB.getConexion();
+            query = conexion.prepareStatement(sql);
+            query.setString(1, usuario.getInformacion());
+            query.setString(2, usuario.getNombreUsuario());
+            cambios = query.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Error al agregar");
+            e.printStackTrace(System.out);
+        } finally {
+            cierre();
+        }
+        return cambios;
+    }
+
+    public int guardarTag(String nombreUsuario, String tag) {
+        int cambios = 0;
+        String sql = "INSERT INTO interes ( nombre_usuario, etiqueta) VALUES ( ?,?)";
+        int registros = 0;
+        try {
+            conexion = conexionDB.getConexion();
+            query = conexion.prepareStatement(sql);
+            query.setString(1, nombreUsuario);
+            query.setString(2, tag);
+
+            cambios = query.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Error al agregar");
+            e.printStackTrace(System.out);
+        } finally {
+            cierre();
+        }
+        return cambios;
+    }
+
+    
+    
+    
     private void cierre() {
         if (conexion != null) {
             try {

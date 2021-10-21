@@ -5,6 +5,7 @@
  */
 package controlador;
 
+import backend.controlUsuario;
 import com.mycompany.revistas.app.backend.usuario;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -52,6 +53,7 @@ public class LoginControler extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+         controlUsuario control = new controlUsuario();
         BufferedReader reader = request.getReader();
         String body = "";
         String line = reader.readLine();
@@ -61,28 +63,11 @@ public class LoginControler extends HttpServlet {
         }
         System.out.println("body");
         System.out.println(body);
-        loginControlerAPI controler = new loginControlerAPI(usuario.class);
-        sesionControler controlerB = new sesionControler(usuarioLoged.class);
-        System.out.println("objeto");
-        usuario login = controler.fromJson(body);
-        usuarioLoged loged = controlerB.fromJson(body);
-        System.out.println(login);
-        System.out.println("devuelve");
-        //        response.getWriter().append(controler.toJson(login));
-        System.out.println(loged.getNombre());
-        System.out.println(loged.getToken());
-        usuarioDAO DAO = new usuarioDAO();
-        usuario validar = DAO.validarUsuario(login.getNombre(), login.getContrasenia());
-        if (validar.getNombre() != null) {
-
-            usuarioLoged sesion = new usuarioLoged(validar.getNombre(), validar.getContrasenia(), "asfddasfds146");
-            response.getWriter().append(controlerB.toJson(sesion));
-
-        } else {
-            usuarioLoged sesion = new usuarioLoged(validar.getNombre(), validar.getContrasenia(), null);
-            response.getWriter().append(controlerB.toJson(sesion));
+       response.getWriter().append(control.iniciarSesion(body));
+        if (control.isError()==true) {
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
         }
-
+       
         // response.getWriter().append(body);
     }
 
