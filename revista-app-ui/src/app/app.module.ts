@@ -32,6 +32,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TagConteinerComponent } from './componentes/tag-conteiner/tag-conteiner.component';
 import { PreviRevistaComponent } from './componentes/previ-revista/previ-revista.component';
 import { EdicionRevistaComponent } from './editorComponent/edicion-revista/edicion-revista.component';
+import { FormSuscripcionComponent } from './suscriptorComponent/form-suscripcion/form-suscripcion.component';
 
 
 
@@ -56,6 +57,7 @@ import { EdicionRevistaComponent } from './editorComponent/edicion-revista/edici
     TagConteinerComponent,
     PreviRevistaComponent,
     EdicionRevistaComponent,
+    FormSuscripcionComponent,
   ],
   imports: [
     BrowserModule,

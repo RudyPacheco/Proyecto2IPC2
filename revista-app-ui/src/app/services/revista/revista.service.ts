@@ -15,6 +15,7 @@ export class revistaService {
 
     usuario!:string;
     editor!:string;
+    revistaSelec!:revista;
 
     @Output()
     emisorSeleccion: EventEmitter<revista> = new EventEmitter();

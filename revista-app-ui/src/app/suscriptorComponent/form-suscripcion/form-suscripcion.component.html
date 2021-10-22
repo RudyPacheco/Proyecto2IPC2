@@ -1,0 +1,42 @@
+<app-header-sub></app-header-sub>
+
+<body>
+    <div class="container contact-form">
+        <form [formGroup]="suscripcionForm" (ngSubmit)="suscribirse()" >
+            <h3 class="text-center" >Llene el formulario para poder suscribirse a la revista</h3>
+            <h4 class="text-center" >{{revistaR.nombreRevista}}</h4>
+            <h4 class="text-center" >Precio de la subscripion por mes : Q {{revistaR.precioRevista}}</h4>
+           <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="">  </label>
+                    </div>
+                    <div class="form-group">
+                            <label>Fecha de suscripcion</label>
+                            <input formControlName="fechaSuscripcion" type="date">
+                    </div>     
+                    <div class="btn-group"  >
+                        <select class="form-select" formControlName="tipoSuscripcion" (click)="click()" >
+                            <option value="null" >Tipo de Suscripcion</option>
+                            <option value="1"  >Mensual</option>
+                            <option value="2"  >Anual</option>
+                        </select>
+                    </div>  
+                    <div *ngIf="mostrarPrecio" >
+                        <span>Precio total suscripcion:{{precioSub}} </span>
+                    </div>         
+                    <div class="form-group">
+              
+                        <button type="submit" [disabled]="suscripcionForm.invalid" >Suscribirse</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    
+
+
+
+</body>
+
+<app-footer-sub></app-footer-sub>

@@ -9,9 +9,11 @@ import { loginServices } from 'src/app/services/login/login.services';
 })
 export class HeaderEditorComponent implements OnInit {
 
-  @Input() nombreUsuario:string="";
+   nombreUsuario:string="";
 
-  constructor(private loginService:loginServices,private router:Router) { }
+  constructor(private loginService:loginServices,private router:Router) { 
+    this.nombreUsuario=this.loginService.usuario.usuario;
+  }
 
   ngOnInit(): void {
   }

@@ -5,14 +5,19 @@
  */
 package modelo;
 
+import com.google.protobuf.TextFormat;
 import com.mycompany.revistas.app.backend.usuario;
 import conexion.conexionDB;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -100,10 +105,72 @@ public class informacionDAO {
         return tags;
     }
     
+        
+           public int asignarCostoRevista( int codigo, double costo, String fecha) {
+
+        int cambios = 0;
+        String sql = "INSERT INTO costo_revista ( codigo_revista,costo_dia,fecha_asignacion) VALUES (?,?,?)";
+
+        try {
+            conexion = conexionDB.getConexion();
+            query = conexion.prepareStatement(sql);
+            query.setInt(1, codigo);
+            query.setDouble(2, costo);
+            query.setDate(3, getFecha(fecha));
+            cambios = query.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Error al agregar costo a la revista");
+            e.printStackTrace(System.out);
+        } catch (TextFormat.ParseException | java.text.ParseException ex) {
+            Logger.getLogger(revistaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            cierre();
+        }
+        return cambios;
+    }
+        
+        
+        
+        public double obtenerCostoGlobal(){
+             String consulta = "SELECT * FROM costoglobal_revista WHERE fecha_asignacion = (SELECT MAX(fecha_asignacion) FROM costoglobal_revista)";
+            double costo = 0;
+            
+            try {
+                conexion=conexionDB.getConexion();
+                query = conexion.prepareStatement(consulta);
+                result=query.executeQuery();
+                while (result.next()) {                    
+                    System.out.println(result.getDouble("costo_dia"));
+                    costo=result.getDouble("costo_dia");
+                }
+                
+            } catch (SQLException e) {
+            
+                System.out.println("error en el costo global");
+            }
+            
+            
+            return costo;
+            
+        }
+        
+        
+        
+   
     
     
     
-    
+        private Date getFecha(String localDate) throws TextFormat.ParseException, java.text.ParseException {
+        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+        Date fecha = null;
+        java.util.Date nFecha = formato.parse(localDate);
+        fecha = new java.sql.Date(nFecha.getTime());
+
+        return fecha;
+
+    }
+        
+        
      private void cierre() {
         if (conexion != null) {
             try {

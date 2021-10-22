@@ -11,6 +11,7 @@ import { FormRevistaComponent } from './editorComponent/form-revista/form-revist
 import { InicioEditorComponent } from './editorComponent/inicio-editor/inicio-editor.component';
 import { MiRevistaComponent } from './editorComponent/mi-revista/mi-revista.component';
 import { LoginGuardian } from './services/login/login.guardian.service';
+import { FormSuscripcionComponent } from './suscriptorComponent/form-suscripcion/form-suscripcion.component';
 import { InicioSubComponent } from './suscriptorComponent/inicio-sub/inicio-sub.component';
 import { MiSuscripcionComponent } from './suscriptorComponent/mi-suscripcion/mi-suscripcion.component';
 import { RevistaPublicComponent } from './suscriptorComponent/revista-public/revista-public.component';
@@ -30,7 +31,8 @@ const routes: Routes = [
   {path:'Nueva-Revista',component:FormRevistaComponent},
   {path:'Nueva-Edicion',component:FormEdicionComponent},
   {path:'TagSelector',component:TagConteinerComponent},
-  {path:'Edicones',component:EdicionRevistaComponent}
+  {path:'Edicones',component:EdicionRevistaComponent},
+  {path:'FormPago',component:FormSuscripcionComponent}
 ];
 
 @NgModule({

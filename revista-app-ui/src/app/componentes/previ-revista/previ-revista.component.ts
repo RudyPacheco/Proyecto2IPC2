@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { revistaService } from 'src/app/services/revista/revista.service';
 import { revista } from 'src/models/revista/revista.model';
 
@@ -11,9 +12,16 @@ export class PreviRevistaComponent implements OnInit {
 
   array:string[]=[]
   revistaR:revista;
-  constructor(private revsistaService:revistaService) {
+  constructor(private revsistaService:revistaService,private router:Router) {
       this.revistaR = new revista(0,"",0,"","",this.array,"","",true,);
    }
+
+
+   navegar(){
+     this.revsistaService.revistaSelec=this.revistaR;
+     this.router.navigate(['FormPago'])
+   }
+
 
   ngOnInit(): void {
     this.revsistaService.emisorSeleccion.subscribe((revista:revista)=>{

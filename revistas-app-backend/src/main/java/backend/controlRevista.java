@@ -31,11 +31,14 @@ public class controlRevista {
     int codigoR;
 
     public String publicarRevsita(revista revistaR, String direccion) {
+        this.informacionDAO=new informacionDAO();
         int registros;
         String resultado = "";
         codigoR = generarCodigo();
+        double costoGoblal = informacionDAO.obtenerCostoGlobal();
         registros = revistaDAO.guardarRevistaN(revistaR, codigoR);
         registros += revistaDAO.guardarEdicion(codigoR, direccion, revistaR.getFechaCreacion());
+        registros += informacionDAO.asignarCostoRevista(codigoR, costoGoblal, revistaR.getFechaCreacion());
         for (int i = 0; i < revistaR.getEtiquetas().size(); i++) {
             registros += revistaDAO.guardarEtiquetasRevista(codigoR, revistaR.getEtiquetas().get(i));
             
