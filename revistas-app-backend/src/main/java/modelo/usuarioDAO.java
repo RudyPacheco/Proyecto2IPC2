@@ -5,7 +5,7 @@
  */
 package modelo;
 
-import backend.controlUsuario;
+import service.controlUsuario;
 import com.mycompany.revistas.app.backend.usuario;
 import conexion.conexionDB;
 import java.sql.Connection;
@@ -48,6 +48,33 @@ public class usuarioDAO {
 
         return temp;
     }
+    
+      public usuarioLoged buscarUsuario(String nombre) {
+        usuarioLoged temp = new usuarioLoged();
+        String consulta = "SELECT * FROM usuario WHERE nombre_usuario=?";
+
+        try {
+            conexion = conexionDB.getConexion();
+            query = conexion.prepareStatement(consulta);
+            query.setString(1, nombre);
+
+            result = query.executeQuery();
+            while (result.next()) {
+                temp.setNombre(result.getString("nombre"));
+                temp.setApellido(result.getString("apellido"));
+                temp.setUsuario(result.getString("nombre_usuario"));
+                temp.setInformacion(result.getString("informacion"));
+                temp.setTipoCuenta(result.getInt("codigo_area"));
+            }
+        } catch (SQLException ex) {
+            System.out.println("error en bucarUsuario");
+        } finally {
+            cierre();
+        }
+
+        return temp;
+    }
+    
 
     public usuario validarExistencia(String nombre) {
         usuario temp = new usuario();
@@ -111,6 +138,65 @@ public class usuarioDAO {
         }
         return cambios;
     }
+    
+        public int cambiarInformacion(String nuevaInfo,String usuario) {
+        int cambios = 0;
+        String sql = "UPDATE usuario SET informacion=? WHERE nombre_usuario=?";
+        int registros = 0;
+        try {
+            conexion = conexionDB.getConexion();
+            query = conexion.prepareStatement(sql);
+            query.setString(1,nuevaInfo);
+            query.setString(2, usuario);
+            cambios = query.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Error al cambiar info ");
+            e.printStackTrace(System.out);
+        } finally {
+            cierre();
+        }
+        return cambios;
+    }
+    
+     public int cambiarNombre(String nuevoNombre,String usuario) {
+        int cambios = 0;
+        String sql = "UPDATE usuario SET nombre=? WHERE nombre_usuario=?";
+        int registros = 0;
+        try {
+            conexion = conexionDB.getConexion();
+            query = conexion.prepareStatement(sql);
+            query.setString(1, nuevoNombre);
+            query.setString(2, usuario);
+            cambios = query.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Error al cambiar nombre");
+            e.printStackTrace(System.out);
+        } finally {
+            cierre();
+        }
+        return cambios;
+    }
+     
+     public int cambiarApellido(String nuevoApellido,String usuario) {
+        int cambios = 0;
+        String sql = "UPDATE usuario SET apellido=? WHERE nombre_usuario=?";
+        int registros = 0;
+        try {
+            conexion = conexionDB.getConexion();
+            query = conexion.prepareStatement(sql);
+            query.setString(1, nuevoApellido);
+            query.setString(2, usuario);
+            cambios = query.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Error al cambair apellido");
+            e.printStackTrace(System.out);
+        } finally {
+            cierre();
+        }
+        return cambios;
+    }
+     
+    
 
     public int guardarTag(String nombreUsuario, String tag) {
         int cambios = 0;

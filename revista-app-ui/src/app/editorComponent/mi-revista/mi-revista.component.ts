@@ -40,6 +40,15 @@ this.router.navigate(['Edicones'])
     );
   }
 
+
+  permisosRevista(revista:revista){
+    this.revsitaService.revistaSelec=revista;
+    
+    this.router.navigate(['FormPermisos']);
+  }
+
+
+
   ngOnInit(): void {
   }
 

@@ -5,8 +5,10 @@
  */
 package controlador;
 
-import backend.controlUsuario;
+import service.controlRevista;
+import service.controlUsuario;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -14,6 +16,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 import manejoGson.registroConverter;
 import modelo.UsuarioNuevo;
 import modelo.usuarioDAO;
@@ -88,5 +91,33 @@ public class RegistroControler extends HttpServlet {
 //        
         
     }
+    
+    
+    
+    
+    @Override
+    protected void doPut(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        controlUsuario control = new controlUsuario();
+       BufferedReader reader = request.getReader();
+        String body = "";
+        String line = reader.readLine();
+        while (line != null) {
+            body += line;
+            line = reader.readLine();
+        }
+        System.out.println("body");
+        System.out.println(body);
+        
+         
+
+        response.getWriter().append(control.actualizarDatosUsuario(body));
+        
+   
+        
+    }
+    
+    
+    
+    
 
 }

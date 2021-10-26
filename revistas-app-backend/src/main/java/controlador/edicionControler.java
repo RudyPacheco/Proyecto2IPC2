@@ -5,8 +5,8 @@
  */
 package controlador;
 
-import backend.controlEdicion;
-import backend.controlRevista;
+import service.controlEdicion;
+import service.controlRevista;
 import com.google.gson.Gson;
 import java.io.BufferedReader;
 import java.io.File;

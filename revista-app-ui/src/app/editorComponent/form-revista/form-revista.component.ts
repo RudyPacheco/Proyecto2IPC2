@@ -29,6 +29,7 @@ export class FormRevistaComponent implements OnInit {
      nombreRevista:['',Validators.required],
      categoria:[null,Validators.required],
      etiquetaS:['',Validators.required],
+     etiquetaCustom:[''],
      precioRevista:['',Validators.required],
      descripcion:['',Validators.required],
      fechaCreacion:['',Validators.required],
@@ -71,6 +72,21 @@ export class FormRevistaComponent implements OnInit {
     console.log(this.tagsSelected);
   
   }
+
+  agregarCustom(){
+    console.log(this.revistaForm.get("etiquetaCustom")?.value);
+    var indice = this.tagsSelected.indexOf(this.revistaForm.get("etiquetaCustom")?.value);
+    if (indice==-1) {
+     this.tagsSelected.push(this.revistaForm.get("etiquetaCustom")?.value);
+    }
+    this.revistaForm.reset({
+      etiquetaCustom: ''
+ 
+    });
+    console.log(this.tagsSelected);
+  
+  }
+
 
   publicarRevista(){
     if (this.revistaForm.valid && this.selectedFile!==null) {

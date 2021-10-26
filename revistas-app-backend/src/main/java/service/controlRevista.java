@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package backend;
+package service;
 
 import java.io.File;
 import static java.lang.Runtime.version;
@@ -17,6 +17,7 @@ import javax.servlet.http.Part;
 import modelo.informacionDAO;
 import modelo.revista;
 import modelo.revistaDAO;
+import modelo.suscripcionDAO;
 import modelo.usuarioDAO;
 
 /**
@@ -28,6 +29,8 @@ public class controlRevista {
     revistaDAO revistaDAO;
     usuarioDAO usuarioDAO;
     informacionDAO informacionDAO;
+    suscripcionDAO suscricionDAO;
+    controlSuscripcion controlSub;
     int codigoR;
 
     public String publicarRevsita(revista revistaR, String direccion) {
@@ -52,7 +55,8 @@ public class controlRevista {
         System.out.println(usuario);
         this.revistaDAO = new revistaDAO();
         this.informacionDAO = new informacionDAO();
-
+//        this.suscricionDAO = new suscripcionDAO();
+        this.controlSub = new controlSuscripcion();
         ArrayList<revista> revistasE = new ArrayList<>();
         ArrayList<Integer> idRevista = null;
         ArrayList<String> tags = (ArrayList<String>) informacionDAO.listarEtiquetasUsuario(usuario);
@@ -125,6 +129,26 @@ public class controlRevista {
 //            }
 //        }
         Collections.reverse(revistasLImpias);
+        
+        
+        List<revista> suscripciones = controlSub.listarSuscripciones(usuario);
+        
+        
+        for (int i = 0; i < suscripciones.size(); i++) {
+            revista tmp = suscripciones.get(i);
+            
+            for (int j = 0; j < revistasLImpias.size(); j++) {
+                revista tmp2 = revistasLImpias.get(j);
+                if (tmp.getCodigo()==tmp2.getCodigo()) {
+                    revistasLImpias.remove(j);
+                }  
+            }
+        }
+        
+        
+        
+        
+        
         
 
         return revistasLImpias;

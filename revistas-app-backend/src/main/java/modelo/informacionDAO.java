@@ -147,13 +147,68 @@ public class informacionDAO {
             } catch (SQLException e) {
             
                 System.out.println("error en el costo global");
+            }finally {
+            cierre();
             }
-            
             
             return costo;
             
         }
         
+        
+        
+        public double obtenerCostoRevistal(int codigo){
+             String consulta = "SELECT * FROM costo_revista WHERE codigo_revista=?";
+            double costo = 0;
+            
+            try {
+                conexion=conexionDB.getConexion();
+                query = conexion.prepareStatement(consulta);
+                query.setInt(1, codigo);
+                result=query.executeQuery();
+                while (result.next()) {                    
+                    System.out.println(result.getDouble("costo_dia"));
+                    costo=result.getDouble("costo_dia");
+                }
+                
+            } catch (SQLException e) {
+            
+                System.out.println("error en el costo global");
+            }finally {
+            cierre();
+            }
+            
+            return costo;
+            
+        }
+        
+        
+        
+        
+        
+        public int eliminarInteresUsuario(String usuario){
+            String consulta = "DELETE FROM interes WHERE nombre_usuario=?";
+            int registros = 0;
+             try {
+                conexion=conexionDB.getConexion();
+                query = conexion.prepareStatement(consulta);
+                 query.setString(1, usuario);
+                registros=query.executeUpdate();
+            } catch (SQLException e) {
+            
+                System.out.println("error al eliminar ");
+                      e.printStackTrace(System.out);
+            }finally {
+            cierre();
+            }
+            
+            
+            
+            
+            
+            
+            return registros;
+        }
         
         
    

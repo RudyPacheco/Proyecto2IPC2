@@ -5,7 +5,7 @@
  */
 package controlador;
 
-import backend.controlRevista;
+import service.controlRevista;
 import com.google.gson.Gson;
 import com.mycompany.revistas.app.backend.usuario;
 import java.io.BufferedReader;
@@ -82,6 +82,16 @@ public class uploadRevista extends HttpServlet {
              List<revista> revistas= controlRevista.revistasRecomendacion(usuarioG);
              response.getWriter().append(s.toJson(revistas));
             
+        }
+        if (editor==null && usuarioG ==null && usuarioR==null) {
+            Gson s = new Gson();
+            revsitaDAO = new revistaDAO();
+            List<revista> revistas= revsitaDAO.listarRevista();
+            for (int i = 0; i < revistas.size(); i++) {
+               revista tmp = revistas.get(i);
+               tmp.setEtiquetas((ArrayList<String>) revsitaDAO.listarEtiquetas(tmp.getCodigo()));
+            }
+              response.getWriter().append(s.toJson(revistas));
         }
    
        

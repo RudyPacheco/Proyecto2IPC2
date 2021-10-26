@@ -1,0 +1,21 @@
+.btn.btn-outline-light{
+    border: none;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+dropdown{
+    margin-left: 10%;
+    margin-right: 100px;
+}
+
+.dropdown-pull-right {
+    float: right !important;
+    right: 0;
+    left: auto;
+  }
+  
+  .dropdown-pull-right>.dropdown-menu {
+    right: 0;
+    left: auto;
+  }

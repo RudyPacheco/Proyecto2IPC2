@@ -23,7 +23,7 @@ export class FormSuscripcionComponent implements OnInit {
   suscripcionN!:suscripcion;
 
   constructor(private revsistaService:revistaService,private router:Router,private builder:FormBuilder,private suscripcionService:suscripcionService,private loginSerivce:loginServices) {
-      this.revistaR = new revista(0,"",0,"","",this.array,"","",true,);
+      this.revistaR = new revista(0,"",0,"","",this.array,"","",true,true);
       this.suscripcionForm=this.builder.group({
         fechaSuscripcion:['',Validators.required],
         tipoSuscripcion:[null,Validators.required]

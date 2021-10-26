@@ -28,4 +28,10 @@ export class HeaderSubComponent implements OnInit {
   
   }
 
+  perfil(){
+    this.router.navigate(['MiPerfilS']);
+  }
+
+
+
 }

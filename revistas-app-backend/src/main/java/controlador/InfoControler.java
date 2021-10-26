@@ -5,7 +5,7 @@
  */
 package controlador;
 
-import backend.controlUsuario;
+import service.controlUsuario;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;

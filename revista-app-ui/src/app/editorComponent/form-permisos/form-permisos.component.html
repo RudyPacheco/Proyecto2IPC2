@@ -1,0 +1,37 @@
+<app-header-editor></app-header-editor>
+
+<body>
+    <div class="container" >
+        <h1 class="text-center">Permisos de la revista </h1>
+        <h2 class="text-center" >{{revistaR.nombreRevista}}</h2>
+        <form [formGroup]="permisoForm" (ngSubmit)="guardarCambios()" >
+            <div>
+                <label for="">Permitir interacciones (likes,comentarios)</label>
+                <select  formControlName="permisoInteraccion" class="custom-select d-block w-100" id="operation">
+                    <option value="1">Activado</option>
+                    <option value="2">Desactivado</option>
+                  </select>
+            </div>
+              <div>
+                <label for="">Permitir Suscripciones</label>
+                <select  formControlName="permisoSub" class="custom-select d-block w-100" id="operation">
+                    <option value="1">Activado</option>
+                    <option value="2">Desactivado</option>
+                  </select>
+              </div>
+              <div>
+                  <button type="submit" class="btn btn-success" >Guardar Cambios</button>
+              </div>
+        </form>
+
+
+    </div>
+  
+    
+
+
+</body>
+
+
+
+<app-footer-editor></app-footer-editor>

@@ -33,6 +33,7 @@ public class conexionDB {
             
         } catch (ClassNotFoundException | SQLException e) {
             System.out.println("Error en conexion");
+             e.printStackTrace(System.out);
         }
         
         return conexion;

@@ -5,7 +5,7 @@
  */
 package controlador;
 
-import backend.controlUsuario;
+import service.controlUsuario;
 import com.google.gson.Gson;
 import java.io.BufferedReader;
 import java.io.IOException;

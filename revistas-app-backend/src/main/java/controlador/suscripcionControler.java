@@ -5,8 +5,8 @@
  */
 package controlador;
 
-import backend.controlRevista;
-import backend.controlSuscripcion;
+import service.controlRevista;
+import service.controlSuscripcion;
 import com.google.gson.Gson;
 import java.io.BufferedReader;
 import java.io.IOException;

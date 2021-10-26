@@ -5,7 +5,7 @@
  */
 package controlador;
 
-import backend.controlUsuario;
+import service.controlUsuario;
 import com.mycompany.revistas.app.backend.usuario;
 import java.io.BufferedReader;
 import java.io.IOException;

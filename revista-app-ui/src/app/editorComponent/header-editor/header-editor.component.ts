@@ -24,4 +24,10 @@ export class HeaderEditorComponent implements OnInit {
   }
 
 
+  perfil(){
+    this.router.navigate(['MiPerfilE']);
+  }
+
+
+
 }

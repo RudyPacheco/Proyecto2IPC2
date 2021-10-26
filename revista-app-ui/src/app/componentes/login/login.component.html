@@ -14,6 +14,8 @@
       <div [hidden]="loginForm.controls.contrasenia.valid || loginForm.controls.contrasenia.pristine" class="alert alert-danger" role="alert">
        Contraseña vacia
       </div>
+      <label>Fecha Actual</label>
+      <input formControlName="fechaActual" type="date">
       <button type="submit" [disabled]="loginForm.invalid">Iniciar Sesion</button>
     </form>
     

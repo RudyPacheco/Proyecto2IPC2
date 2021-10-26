@@ -23,13 +23,14 @@ public class revista {
     private String fechaCreacion;
     private String editor;
     private boolean interaccion;
+    private boolean bloqueoSub;
     private ArrayList<String> etiquetas;
 
 
     public revista() {
     }
 
-    public revista(int codigo, String nombreRevista, String categoria, double precioRevista, String descripcion, String fechaCreacion, String editor, boolean interaccion, ArrayList<String> etiquetas) {
+    public revista(int codigo, String nombreRevista, String categoria, double precioRevista, String descripcion, String fechaCreacion, String editor, boolean interaccion, boolean bloqueoSub, ArrayList<String> etiquetas) {
         this.codigo = codigo;
         this.nombreRevista = nombreRevista;
         this.categoria = categoria;
@@ -38,9 +39,11 @@ public class revista {
         this.fechaCreacion = fechaCreacion;
         this.editor = editor;
         this.interaccion = interaccion;
+        this.bloqueoSub = bloqueoSub;
         this.etiquetas = etiquetas;
     }
 
+ 
 
 
     
@@ -116,6 +119,14 @@ public class revista {
 
     public void setCodigo(int codigo) {
         this.codigo = codigo;
+    }
+
+    public boolean isBloqueoSub() {
+        return bloqueoSub;
+    }
+
+    public void setBloqueoSub(boolean bloqueoSub) {
+        this.bloqueoSub = bloqueoSub;
     }
 
  

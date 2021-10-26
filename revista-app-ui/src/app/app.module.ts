@@ -33,6 +33,31 @@ import { TagConteinerComponent } from './componentes/tag-conteiner/tag-conteiner
 import { PreviRevistaComponent } from './componentes/previ-revista/previ-revista.component';
 import { EdicionRevistaComponent } from './editorComponent/edicion-revista/edicion-revista.component';
 import { FormSuscripcionComponent } from './suscriptorComponent/form-suscripcion/form-suscripcion.component';
+import { TablaEdicionComponent } from './componentes/tabla-edicion/tabla-edicion.component';
+import { EdicionesRevistaComponent } from './suscriptorComponent/ediciones-revista/ediciones-revista.component';
+import { ViewEditperfilComponent } from './suscriptorComponent/view-editperfil/view-editperfil.component';
+import { MiPerfilComponent } from './componentes/mi-perfil/mi-perfil.component';
+import { PerfilSubComponent } from './suscriptorComponent/perfil-sub/perfil-sub.component';
+import { PerfilEditComponent } from './editorComponent/perfil-edit/perfil-edit.component';
+import { FormEditperfilComponent } from './componentes/form-editperfil/form-editperfil.component';
+import { FormEditperfilsubComponent } from './suscriptorComponent/form-editperfilsub/form-editperfilsub.component';
+import { FormEditperfileComponent } from './editorComponent/form-editperfile/form-editperfile.component';
+import { DetallesRevistaComponent } from './componentes/detalles-revista/detalles-revista.component';
+import { ReportePageComponent } from './editorComponent/reporte-page/reporte-page.component';
+import { ReporteComentarioComponent } from './editorComponent/reporte-comentario/reporte-comentario.component';
+import { ReporteSuscripcionComponent } from './editorComponent/reporte-suscripcion/reporte-suscripcion.component';
+import { ReporteMegustaComponent } from './editorComponent/reporte-megusta/reporte-megusta.component';
+import { ReporteGananciaComponent } from './editorComponent/reporte-ganancia/reporte-ganancia.component';
+import { FormPermisosComponent } from './editorComponent/form-permisos/form-permisos.component';
+import { HomeAdminComponent } from './adminComponent/home-admin/home-admin.component';
+import { HeaderAdminComponent } from './adminComponent/header-admin/header-admin.component';
+import { FooterAdminComponent } from './adminComponent/footer-admin/footer-admin.component';
+import { ReportesAdminComponent } from './adminComponent/reportes-admin/reportes-admin.component';
+import { ReporteGananciasAComponent } from './adminComponent/reporte-ganancias-a/reporte-ganancias-a.component';
+import { ReportePopularesComponent } from './adminComponent/reporte-populares/reporte-populares.component';
+import { ReporteComentadasComponent } from './adminComponent/reporte-comentadas/reporte-comentadas.component';
+import { RevistasPageComponent } from './adminComponent/revistas-page/revistas-page.component';
+
 
 
 
@@ -58,6 +83,31 @@ import { FormSuscripcionComponent } from './suscriptorComponent/form-suscripcion
     PreviRevistaComponent,
     EdicionRevistaComponent,
     FormSuscripcionComponent,
+    TablaEdicionComponent,
+    EdicionesRevistaComponent,
+    ViewEditperfilComponent,
+    MiPerfilComponent,
+    PerfilSubComponent,
+    PerfilEditComponent,
+    FormEditperfilComponent,
+    FormEditperfilsubComponent,
+    FormEditperfileComponent,
+    DetallesRevistaComponent,
+    ReportePageComponent,
+    ReporteComentarioComponent,
+    ReporteSuscripcionComponent,
+    ReporteMegustaComponent,
+    ReporteGananciaComponent,
+    FormPermisosComponent,
+    HomeAdminComponent,
+    HeaderAdminComponent,
+    FooterAdminComponent,
+    ReportesAdminComponent,
+    ReporteGananciasAComponent,
+    ReportePopularesComponent,
+    ReporteComentadasComponent,
+    RevistasPageComponent,
+
   ],
   imports: [
     BrowserModule,

@@ -28,6 +28,9 @@
                             {{ etiqueta }}
                         </option>
                     </select>
+                    <input formControlName="etiquetaCustom" type="text" class="form-control"
+                        placeholder="Etiqueta personalizada" value="" />
+                        <button class="btn btn-info" (click)="agregarCustom()" >Agregar Etiqueta</button>
                 </div>
                 <div>
                     <label for="operation">Etiquetas seleccionadas</label>
@@ -50,7 +53,7 @@
                     <input formControlName="fechaCreacion" type="date">
                 </div>
                 <div class="form-group">
-                    <button type="submit" [disabled]="revistaForm.invalid">Publicar revista</button>
+                    <button type="submit" class="btn btn-success" [disabled]="revistaForm.invalid">Publicar revista</button>
                 </div>
             </div>
             <div class="col-md-6">

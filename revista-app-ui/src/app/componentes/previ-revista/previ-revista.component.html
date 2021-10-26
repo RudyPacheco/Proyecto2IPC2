@@ -12,13 +12,13 @@
             <h3>Descricion: {{revistaR.descripcion}}</h3>
             <h3>Categoria: {{revistaR.categoria}}</h3>
             <h3>Etiquetas:{{revistaR.etiquetas}} </h3>
-            <a href="">Editor: {{revistaR.editor}} </a>
+            <a  href="javascript: void(0);"  (click)="verPerfil()" data-bs-dismiss="modal" >Editor: {{revistaR.editor}} </a>
 
           </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-          <button  (click)="navegar()" data-bs-dismiss="modal" class="btn btn-primary">Suscribirse</button>
+          <button  [disabled]="!bloqueo_sub"   (click)="navegar()" data-bs-dismiss="modal" class="btn btn-primary">Suscribirse</button>
         </div>
       </div>
     </div>

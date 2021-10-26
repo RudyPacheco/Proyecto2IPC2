@@ -5,7 +5,9 @@
  */
 package controlador;
 
+import java.io.BufferedInputStream;
 import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -37,7 +39,15 @@ public class RevistaControler extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+         String path = request.getParameter("paht");
+          
+          System.out.println("metodo do get");
+        
+        if (path != null) {
+            showImage(response, path);
+        }
+   
+        
     }
 
     /**
@@ -69,6 +79,20 @@ public class RevistaControler extends HttpServlet {
         
         
         
+    }
+    
+    
+    private void showImage(HttpServletResponse response, String path)
+            throws ServletException, IOException {
+        try (BufferedInputStream fileStream = new BufferedInputStream(new FileInputStream(path))) {
+            response.setContentType("application/pdf");
+            int data = fileStream.read();
+            while (data > -1) {
+                response.getOutputStream().write(data);
+                data = fileStream.read();
+            }
+        }
+
     }
 
 

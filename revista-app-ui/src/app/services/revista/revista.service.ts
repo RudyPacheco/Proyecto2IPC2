@@ -1,6 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { EventEmitter, Injectable, Output } from "@angular/core";
 import { Observable } from "rxjs";
+import { usuarioLoged } from "src/models/auth/usuarioLoged";
 import { revista } from "src/models/revista/revista.model";
 
 
@@ -16,6 +17,7 @@ export class revistaService {
     usuario!:string;
     editor!:string;
     revistaSelec!:revista;
+  
 
     @Output()
     emisorSeleccion: EventEmitter<revista> = new EventEmitter();
@@ -36,6 +38,10 @@ export class revistaService {
 
     public getlistaRevistasGenerales():Observable<revista[]>{
         return this.httpClient.get<revista[]>(this.APY_URL+"?general="+this.usuario);
+    }
+
+    public getlistarTodasRevistas():Observable<revista[]>{
+        return this.httpClient.get<revista[]>(this.APY_URL);
     }
 
 

@@ -6,33 +6,6 @@
       </svg>
     Nueva revista</button>
 
-    <body>
-        <h1 class="text-center fw-bolder" >Ediciones</h1>
-        <h1 class="text-center fw-bolder" > {{revistaSelect.nombreRevista}} </h1>
-        <div class="conteiner">
-            <div class="card-header">
-                <h2 class="h1 text-center">Revistas</h2>
-                <table class="table table-success table-striped">
-                    <thead>
-                      <tr>
-                        <th>Codigo Revista</th>
-                        <th>Titulo Revista</th>
-                        <th>Fecha de la edicion</th> 
-                        <th></th>                    
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr *ngFor="let edicion of edicionesRevista; let i= index">
-                        <th scope="row">{{i+1}}</th>
-                        <td>{{revistaSelect.nombreRevista}}</td>
-                        <td> {{edicion.fechaCreacion}} </td>
-                        <td>
-                          <button   class="btn btn-danger">Leer</button>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-            </div>
-        </div>
-    </body>
+<app-tabla-edicion  ></app-tabla-edicion>
+
 <app-footer-editor></app-footer-editor>

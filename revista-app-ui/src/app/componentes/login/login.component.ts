@@ -22,11 +22,16 @@ export class LoginComponent implements OnInit {
     this.loginForm = this.builder.group({
       nombre: ['', Validators.required],
       contrasenia: ['', Validators.required],
+      fechaActual:['',Validators.required]
     });
   }
 
   enviar(values: any) {
     if (this.loginForm.valid) {
+      
+      console.log(this.loginForm.get("fechaActual")?.value);
+      this.loginServices.fechaActual=this.loginForm.get("fechaActual")?.value;
+      console.log(this.loginServices.fechaActual);
       console.log(values);
       this.loginServices.createLogin(this.loginForm.value)
     .subscribe((create: usuarioLoged) =>{
@@ -39,13 +44,18 @@ export class LoginComponent implements OnInit {
         if (create.token!==undefined) {
           this.loginServices.agregarToken(create.token);
           this.loginServices.agregarUsuario(create);
+        
+        
       console.log("TOKEN AP");
+
      // console.log(create.token)
       console.log(this.loginServices.getToken())
           if (create.tipoCuenta==1) {
             this.router.navigate(['inicioSUB']);
           }else if (create.tipoCuenta==2) {
             this.router.navigate(['inicioED']);
+          }else if (create.tipoCuenta==3){
+            this.router.navigate(['InicioAdmin']);
           }
         }else{
           console.log("error token")

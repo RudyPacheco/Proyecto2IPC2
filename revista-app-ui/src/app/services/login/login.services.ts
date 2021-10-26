@@ -15,6 +15,7 @@ export class loginServices {
     
      TOKEN: string ="";
      usuario!: usuarioLoged;
+     fechaActual!:string;
     readonly APY_URL = "http://localhost:8080/revistas-app-backend/";
 
     

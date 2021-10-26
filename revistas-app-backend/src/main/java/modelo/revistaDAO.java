@@ -5,7 +5,7 @@
  */
 package modelo;
 
-import backend.controlUsuario;
+import service.controlUsuario;
 import com.google.protobuf.TextFormat.ParseException;
 import conexion.conexionDB;
 import java.sql.Connection;
@@ -32,7 +32,7 @@ public class revistaDAO {
     public int guardarRevistaN(revista revistaR, int codigo) {
 
         int cambios = 0;
-        String sql = "INSERT INTO revista ( codigo_revista,nombre_revista, nombre_editor, categoria,descripcion,precio_sub,interaccion, fecha_creacion) VALUES (?,?, ?,?,?,?,?,?)";
+        String sql = "INSERT INTO revista ( codigo_revista,nombre_revista, nombre_editor, categoria,descripcion,precio_sub,interaccion,bloqueo_sub, fecha_creacion) VALUES (?,?, ?,?,?,?,?,?,?)";
 
         try {
             conexion = conexionDB.getConexion();
@@ -44,7 +44,8 @@ public class revistaDAO {
             query.setString(5, revistaR.getDescripcion());
             query.setDouble(6, revistaR.getPrecioRevista());
             query.setBoolean(7, true);
-            query.setDate(8, getFecha(revistaR.getFechaCreacion()));
+            query.setBoolean(8, true);
+            query.setDate(9, getFecha(revistaR.getFechaCreacion()));
             cambios = query.executeUpdate();
         } catch (SQLException e) {
             System.out.println("Error al agregar");
@@ -57,6 +58,78 @@ public class revistaDAO {
         return cambios;
     }
 
+    public revista buscarRevistaNombre(String nombreRevista,String nombreEditor) {
+        String consulta = "SELECT * FROM revista WHERE nombre_revista=? AND nombre_editor=?";
+        revista revistaEncontrada = new revista();
+        List<String> tags = new ArrayList<>();
+        try {
+            conexion = conexionDB.getConexion();
+            query = conexion.prepareStatement(consulta);
+            query.setString(1, nombreRevista);
+            query.setString(2, nombreEditor);
+            result = query.executeQuery();
+            while (result.next()) {
+                revistaEncontrada.setCodigo(result.getInt("codigo_revista"));
+                revistaEncontrada.setNombreRevista(result.getString("nombre_revista"));
+                revistaEncontrada.setCategoria(result.getString("categoria"));
+                revistaEncontrada.setPrecioRevista(result.getDouble("precio_sub"));
+                revistaEncontrada.setDescripcion(result.getString("descripcion"));
+                revistaEncontrada.setFechaCreacion(result.getDate("fecha_creacion").toString());
+                revistaEncontrada.setEditor(result.getString("nombre_editor"));
+                revistaEncontrada.setInteraccion(result.getBoolean("interaccion"));
+                revistaEncontrada.setBloqueoSub(result.getBoolean("bloqueo_sub"));
+                
+                //  tags=listarEtiquetasRevista(result.getInt("codigo_revista"));
+                //   revistaEncontrada.setEtiquetas((ArrayList<String>) tags);
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error etiquetas");
+        } finally {
+            cierre();
+        }
+
+        return revistaEncontrada;
+    }
+    
+    
+      public revista buscarRevistaNombreSinEditor(String nombreRevista) {
+        String consulta = "SELECT * FROM revista WHERE nombre_revista=?";
+        revista revistaEncontrada = new revista();
+        List<String> tags = new ArrayList<>();
+        try {
+            conexion = conexionDB.getConexion();
+            query = conexion.prepareStatement(consulta);
+            query.setString(1, nombreRevista);
+            
+            result = query.executeQuery();
+            while (result.next()) {
+                revistaEncontrada.setCodigo(result.getInt("codigo_revista"));
+                revistaEncontrada.setNombreRevista(result.getString("nombre_revista"));
+                revistaEncontrada.setCategoria(result.getString("categoria"));
+                revistaEncontrada.setPrecioRevista(result.getDouble("precio_sub"));
+                revistaEncontrada.setDescripcion(result.getString("descripcion"));
+                revistaEncontrada.setFechaCreacion(result.getDate("fecha_creacion").toString());
+                revistaEncontrada.setEditor(result.getString("nombre_editor"));
+                revistaEncontrada.setInteraccion(result.getBoolean("interaccion"));
+                revistaEncontrada.setBloqueoSub(result.getBoolean("bloqueo_sub"));
+                
+                //  tags=listarEtiquetasRevista(result.getInt("codigo_revista"));
+                //   revistaEncontrada.setEtiquetas((ArrayList<String>) tags);
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error etiquetas");
+             e.printStackTrace(System.out);
+        } finally {
+            cierre();
+        }
+
+        return revistaEncontrada;
+    }
+    
+    
+    
     public revista buscarRevista(int codigo) {
         String consulta = "SELECT * FROM revista WHERE codigo_revista=?";
         revista revistaEncontrada = new revista();
@@ -75,12 +148,15 @@ public class revistaDAO {
                 revistaEncontrada.setFechaCreacion(result.getDate("fecha_creacion").toString());
                 revistaEncontrada.setEditor(result.getString("nombre_editor"));
                 revistaEncontrada.setInteraccion(result.getBoolean("interaccion"));
+                revistaEncontrada.setBloqueoSub(result.getBoolean("bloqueo_sub"));
+                
                 //  tags=listarEtiquetasRevista(result.getInt("codigo_revista"));
                 //   revistaEncontrada.setEtiquetas((ArrayList<String>) tags);
             }
 
         } catch (SQLException e) {
             System.out.println("Error etiquetas");
+             e.printStackTrace(System.out);
         } finally {
             cierre();
         }
@@ -91,7 +167,7 @@ public class revistaDAO {
     public int guardarEdicion(int codigo, String direccion, String fecha) {
 
         int cambios = 0;
-        String sql = "INSERT INTO edicion_revista ( codigo_revista,direccion, fecha_creacion) VALUES ( ?,?,?)";
+        String sql = "INSERT INTO edicion_revista (codigo_revista,direccion, fecha_creacion) VALUES ( ?,?,?)";
 
         try {
             conexion = conexionDB.getConexion();
@@ -149,6 +225,8 @@ public class revistaDAO {
 
         } catch (SQLException e) {
             System.out.println("Error etiquetas");
+        }finally {
+            cierre();
         }
 
         return tags;
@@ -173,6 +251,8 @@ public class revistaDAO {
 
         } catch (SQLException e) {
             System.out.println("Error etiquetas");
+        }finally {
+            cierre();
         }
 
         return codigos;
@@ -199,6 +279,7 @@ public class revistaDAO {
                 tmp.setFechaCreacion(result.getDate("fecha_creacion").toString());
                 tmp.setEditor(result.getString("nombre_editor"));
                 tmp.setInteraccion(result.getBoolean("interaccion"));
+                tmp.setBloqueoSub(result.getBoolean("bloqueo_sub"));
 //                tags=listarEtiquetas(result.getInt("codigo_revista"));
 //                tmp.setEtiquetas((ArrayList<String>) tags);
                 revistas.add(tmp);
@@ -207,6 +288,8 @@ public class revistaDAO {
         } catch (SQLException ex) {
             System.out.println("error listar");
             Logger.getLogger(revistaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }finally {
+            cierre();
         }
 
         return revistas;
@@ -231,6 +314,7 @@ public class revistaDAO {
                 tmp.setFechaCreacion(result.getDate("fecha_creacion").toString());
                 tmp.setEditor(result.getString("nombre_editor"));
                 tmp.setInteraccion(result.getBoolean("interaccion"));
+                  tmp.setBloqueoSub(result.getBoolean("bloqueo_sub"));
                 //  tags=listarEtiquetasRevista(result.getInt("codigo_revista"));
                 // tmp.setEtiquetas((ArrayList<String>) tags);
                 revistas.add(tmp);
@@ -239,10 +323,53 @@ public class revistaDAO {
         } catch (SQLException ex) {
             System.out.println("error listar");
             Logger.getLogger(revistaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }finally {
+            cierre();
         }
 
         return revistas;
     }
+    
+    
+     public int actualizarInteraccion(permisosModel permisos) {
+        int cambios = 0;
+        String sql = "UPDATE revista SET interaccion=? WHERE codigo_revista=?;";
+        int registros = 0;
+        try {
+            conexion = conexionDB.getConexion();
+            query = conexion.prepareStatement(sql);
+            query.setBoolean(1,permisos.isInteraccion() );
+            query.setInt(2, permisos.getCodigoRevista());
+            cambios = query.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Error al cambiar permisos");
+            e.printStackTrace(System.out);
+        } finally {
+            cierre();
+        }
+        return cambios;
+    }
+     
+     
+     public int actualizarBloqueSub(permisosModel permisos) {
+        int cambios = 0;
+        String sql = "UPDATE revista SET bloqueo_sub=? WHERE codigo_revista=?;";
+        int registros = 0;
+        try {
+            conexion = conexionDB.getConexion();
+            query = conexion.prepareStatement(sql);
+            query.setBoolean(1,permisos.isBloqueo_sub() );
+            query.setInt(2, permisos.getCodigoRevista());
+            cambios = query.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Error al cambiar permisos");
+            e.printStackTrace(System.out);
+        } finally {
+            cierre();
+        }
+        return cambios;
+    }
+     
 
     public String genearSerie() {
         String numeroSerie = "";
@@ -258,6 +385,8 @@ public class revistaDAO {
         } catch (SQLException e) {
             System.out.println("Error al generar Serie");
             e.printStackTrace(System.out);
+        }finally {
+            cierre();
         }
 
         return numeroSerie;

@@ -8,9 +8,10 @@ export class revista {
     fechaCreacion:string;
     editor:string;
     interaccion:boolean;
+    bloqueoSub:boolean;
     etiquetas: string[];
 
-    constructor(codigo:number,nombre:string,precio:number,descripcion:string,categoria: string,tags: string[],editor:string,fecha:string,interaccion:boolean) {
+    constructor(codigo:number,nombre:string,precio:number,descripcion:string,categoria: string,tags: string[],editor:string,fecha:string,interaccion:boolean,bloqueo:boolean) {
         this.codigo=codigo;
         this.nombreRevista=nombre;
         this.precioRevista=precio;
@@ -20,6 +21,7 @@ export class revista {
         this.editor=editor;
         this.fechaCreacion=fecha;
         this.interaccion=interaccion;
+        this.bloqueoSub=bloqueo;
        
     }
 }

@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package backend;
+package service;
 
 import modelo.informacionDAO;
 import modelo.revista;

@@ -1,0 +1,44 @@
+<body>
+    <form [formGroup]="editPofileForm" (ngSubmit) ="guardarCambios()">
+        <div >
+            <div class="form-container sign-in-container">
+                <h1  >Editar Perfil</h1>
+                <label  >Usuario:</label>
+                <h2>{{usuarioR.usuario}}</h2>
+                <label  >Nombre:</label>
+                <input type="text" formControlName="nombre" placeholder="Nombre" value={{usuarioR.nombre}} />
+                <label  >Apellido:</label>
+                <input type="text" formControlName="apellido" placeholder="Apellido" value="usuarioR.apellido" />
+                <label  >Contraeña:</label>
+                <label  >Si desea cambiar la contraseña ingrese la nueva , si no deje el campo vacio</label>
+                <input type="password" formControlName="contrasenia" placeholder="Password" />
+                <label  >Informacion :</label>
+                <textarea class="text-area" formControlName="informacion" ></textarea>
+                <div>
+                    <label for="operation">Etiquetas :</label>
+                    <select name="operation" formControlName="etiquetaS" class="custom-select d-block w-100" id="operation" (click)="imprimir()"  >
+                      <option *ngFor="let option of options"   [value]="option" > {{option}}</option>
+                    </select>
+                  <button class="btn btn-danger" type="button" (click)="limpiarTags()" >Borrar etiquetas seleccionadas</button>
+                  </div>
+                  <div>
+                    <label for="operation">Etiquetas seleccionadas:</label>
+                    <div class="tags" *ngFor="let tag of tagsSelected"> 
+                    <span> {{tag}}</span> 
+                    </div>
+                  </div>
+        
+        
+        
+                  <button type="submit"  class="btn btn-success" [disabled]="editPofileForm.invalid" >Guardar cambios</button>
+
+
+            </div>
+        
+
+
+        </div>        
+       
+    </form>
+
+</body>
