@@ -45,7 +45,7 @@ export class InformacionRegistroComponent implements OnInit {
 
 
   enviar(values :any){
-   this.usuarioInfo= new UsuarioInfo(this.registroService.getUsuario().usuario,this.infoFomr.get("textarea")?.value,this.tagsSelected);
+   this.usuarioInfo= new UsuarioInfo(this.registroService.usuarioNuevo.nombre,this.infoFomr.get("textarea")?.value,this.tagsSelected);
     this.registroService.guardarInformacion(this.usuarioInfo).subscribe((create: UsuarioInfo)=>{
 
       console.log(create);

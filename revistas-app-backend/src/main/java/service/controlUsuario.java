@@ -47,6 +47,7 @@ public class controlUsuario {
         UsuarioNuevo nuevo = converter.fromJson(json);
         usuarioDAO = new usuarioDAO();
         usuario temp = usuarioDAO.validarExistencia(nuevo.getNombre());
+        System.out.println("nombre usuario "+temp.getNombre());
         if (temp.getNombre() == null) {
             usuarioDAO.guardarUsuario(nuevo);
             jsonR = converter.toJson(nuevo);

@@ -40,12 +40,13 @@ export class RegistroComponent implements OnInit {
         contrasenia:'',
         tipoCuenta:null,
       });
-     // console.log("created");
-     // console.log(create);
+      console.log("created");
+      console.log(create);
     
       this.registroService.setUsuario(create);
+      this.registroService.usuarioNuevo=create;
  
-      console.log(this.registroService.getUsuario().tipoCuenta);
+      //console.log(this.registroService.getUsuario().tipoCuenta);
       //console.log(create.Nombre);
       console.log(this.registroService.getUsuario());
    

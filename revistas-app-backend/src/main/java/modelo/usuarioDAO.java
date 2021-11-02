@@ -112,7 +112,7 @@ public class usuarioDAO {
             query.setInt(5, usuario.getTipoCuenta());
             cambios = query.executeUpdate();
         } catch (SQLException e) {
-            System.out.println("Error al agregar");
+            System.out.println("Error al agregar usuario nuevo");
             e.printStackTrace(System.out);
         } finally {
             cierre();
