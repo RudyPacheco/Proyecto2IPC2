@@ -76,7 +76,7 @@ public class RegistroControler extends HttpServlet {
         }
         System.out.println("body");
         System.out.println(body);
-        control.registrarUsuario(body);
+       //control.registrarUsuario(body);
 
         response.getWriter().append(control.registrarUsuario(body));
         
