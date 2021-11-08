@@ -33,22 +33,28 @@ export class reportesAdminService {
 
     //reporte popular
     public verReporteRevistaPopular(revista:string,fechaI:string,fechaF:string):string{
-        return this.APY_URL+"reporteRevistaPopular?fechaI"+fechaI+"&fechaF="+fechaF;
+        return this.APY_URL+"reporteRevistaPopular?fechaI="+fechaI+"&fechaF="+fechaF;
     }
 
     public descargarReporteRevistaPopular(revista:string,fechaI:string,fechaF:string):string{
-        return this.APY_URL+"reporteRevistaPopular?fechaI"+fechaI+"&fechaF="+fechaF+"&descargar=true";
+        return this.APY_URL+"reporteRevistaPopular?fechaI="+fechaI+"&fechaF="+fechaF+"&descargar=true";
     }
 
     public verReporteRevistaComentada(revista:string,fechaI:string,fechaF:string):string{
-        return this.APY_URL+"reporteComentadas?fechaI"+fechaI+"&fechaF="+fechaF;
+        return this.APY_URL+"reporteComentadas?fechaI="+fechaI+"&fechaF="+fechaF;
     }
 
     public descargarReporteRevistaComentada(revista:string,fechaI:string,fechaF:string):string{
-        return this.APY_URL+"reporteComentadas?fechaI"+fechaI+"&fechaF="+fechaF+"&descargar=true";
+        return this.APY_URL+"reporteComentadas?fechaI="+fechaI+"&fechaF="+fechaF+"&descargar=true";
     }
 
+    public verReporteRevistaAnuncio(fechaI:string,fechaF:string):string{
+        return this.APY_URL+"reporteAnuncioServlet?fechaI="+fechaI+"&fechaF="+fechaF;
+    }
 
+    public descargarReporteRevistaAnuncio(fechaI:string,fechaF:string):string{
+        return this.APY_URL+"reporteAnuncioServlet?fechaI="+fechaI+"&fechaF="+fechaF+"&descargar=true";
+    }
 
     
 

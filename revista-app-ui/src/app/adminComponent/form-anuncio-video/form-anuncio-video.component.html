@@ -1,0 +1,61 @@
+<app-header-admin></app-header-admin>
+
+<body>
+    <div class="container contact-form">
+        <form [formGroup]="anuncioForm" >
+       
+            <h1 class="text-center">
+                Llene el formulario para registrar un anuncio  
+            </h1>
+           
+            <div class="row">
+                <div>
+                    <label>Nombre del anunciante</label>
+                    <input formControlName="anunciante" type="text" placeholder="Anunciante">
+                </div>
+                <div>
+                    <label>Link del video</label>
+                    <input formControlName="video" class="linkV" type="text" placeholder="texto">
+                </div>
+                <div>
+                    <label>Cantidad de dias a pagar</label>
+                    <input formControlName="cantidadDias" type="number" placeholder="Dias">
+                </div>
+                <div class="col-md-6">
+                    <div>
+                        <label>Fecha de publicacion</label>
+                        <input (input)="modificarFechaI($event)" type="date">
+                    </div>
+                </div>
+                <div>
+                    <label for="operation">Etiquetas</label>
+                    <select name="operation" formControlName="etiquetaS" class="custom-select d-block w-100"
+                        id="operation" (click)="agregar()">
+                        <option *ngFor="let etiqueta of etiquetas" [value]="etiqueta">
+                            {{ etiqueta }}
+                        </option>
+                    </select>
+                </div>
+                <div>
+                    <label for="operation">Etiquetas seleccionadas</label>
+                    <p>{{ tagsSelected }}</p>
+                    <div *ngFor="let tag of tagsSelected">
+                        {{ tag }}
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-success" (click)="registrarAnuncio()" >Registrar</button>
+        </form>
+    
+
+    </div>
+    
+
+   
+    
+
+</body>
+
+
+
+<app-footer-admin></app-footer-admin>

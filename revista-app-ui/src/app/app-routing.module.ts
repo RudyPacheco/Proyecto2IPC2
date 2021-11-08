@@ -1,6 +1,12 @@
 import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AnunciosPageComponent } from './adminComponent/anuncios-page/anuncios-page.component';
+import { FormAnuncioImagenComponent } from './adminComponent/form-anuncio-imagen/form-anuncio-imagen.component';
+import { FormAnuncioTextoComponent } from './adminComponent/form-anuncio-texto/form-anuncio-texto.component';
+import { FormAnuncioVideoComponent } from './adminComponent/form-anuncio-video/form-anuncio-video.component';
+import { FormAnunciosComponent } from './adminComponent/form-anuncios/form-anuncios.component';
 import { HomeAdminComponent } from './adminComponent/home-admin/home-admin.component';
+import { ReporteAnuncioComponent } from './adminComponent/reporte-anuncio/reporte-anuncio.component';
 import { ReporteComentadasComponent } from './adminComponent/reporte-comentadas/reporte-comentadas.component';
 import { ReporteGananciasAComponent } from './adminComponent/reporte-ganancias-a/reporte-ganancias-a.component';
 import { ReportePopularesComponent } from './adminComponent/reporte-populares/reporte-populares.component';
@@ -71,7 +77,13 @@ const routes: Routes = [
   {path:'FormReporteGananciasA',component:ReporteGananciasAComponent},
   {path:'FormReportePopulares',component:ReportePopularesComponent},
   {path:'FormReporteComentadas',component:ReporteComentadasComponent},
-  {path:'RevistasGenerales',component:RevistasPageComponent}
+  {path:'RevistasGenerales',component:RevistasPageComponent},
+  {path:'Anuncios',component:AnunciosPageComponent},
+  {path:'FomrularioAnuncios',component:FormAnunciosComponent},
+  {path:'AnuncioTexto',component:FormAnuncioTextoComponent},
+  {path:'AnuncioImagen',component:FormAnuncioImagenComponent},
+  {path:'AnuncioVideo',component:FormAnuncioVideoComponent},
+  {path:'ReporteAnuncio',component:ReporteAnuncioComponent}
 ];
 
 @NgModule({

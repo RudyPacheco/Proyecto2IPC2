@@ -11,6 +11,8 @@ import java.io.OutputStream;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
+import modelo.anuncioDAO;
+import modelo.anuncioModel;
 import modelo.comentarioModel;
 import modelo.informacionDAO;
 import modelo.interaccionDAO;
@@ -43,6 +45,7 @@ public class reporteAdminService {
     interaccionDAO interraccionDAO;
     suscripcionDAO suscripcionDAO;
     reporteAdminDAO reporteAdminDAO;
+    anuncioDAO anuncioDAO;
 
     public reporteAdminService(Connection connection) {
         this.connection = connection;
@@ -224,7 +227,7 @@ public class reporteAdminService {
     }
 
     public void reporteRevistasComentadas(String fechaInicial, String fechaFinal, OutputStream targetStream) throws JRException {
-         InputStream compiledReport = getClass().getClassLoader().getResourceAsStream("/reportes/reporteRevistasComentadas.jasper");
+        InputStream compiledReport = getClass().getClassLoader().getResourceAsStream("/reportes/reporteRevistasComentadas.jasper");
 
         //metodo sin fechas
         suscripcionDAO = new suscripcionDAO();
@@ -263,8 +266,40 @@ public class reporteAdminService {
             }
 
         }
-        
+
         JRDataSource source = new JRBeanCollectionDataSource(comentariosR);
+        JasperPrint printer = JasperFillManager.fillReport(compiledReport, null, source);
+        JasperExportManager.exportReportToPdfStream(printer, targetStream);
+
+    }
+
+    public void reporteAnuncios(String fechaInicial, String fechaFinal, OutputStream targetStream) throws JRException {
+        InputStream compiledReport = getClass().getClassLoader().getResourceAsStream("/reportes/ReporteAnuncios.jasper");
+
+        //metodo sin fechas
+        suscripcionDAO = new suscripcionDAO();
+        revistaDAO = new revistaDAO();
+        informacionDAO = new informacionDAO();
+        interraccionDAO = new interaccionDAO();
+        reporteAdminDAO = new reporteAdminDAO();
+        anuncioDAO = new anuncioDAO();
+
+        List<reporteComentarios> comentariosR = new ArrayList<>();
+        List<anuncioModel> anuncios = new ArrayList<>();
+
+        //metodo sin fechas
+        if (fechaInicial.equalsIgnoreCase("") || fechaFinal.equalsIgnoreCase("")) {
+
+            anuncios = this.anuncioDAO.listarAnuncios();
+
+            //metodo con fechas
+        } else {
+
+            anuncios = this.anuncioDAO.listarAnunciosFecha(fechaInicial, fechaFinal);
+
+        }
+
+        JRDataSource source = new JRBeanCollectionDataSource(anuncios);
         JasperPrint printer = JasperFillManager.fillReport(compiledReport, null, source);
         JasperExportManager.exportReportToPdfStream(printer, targetStream);
 

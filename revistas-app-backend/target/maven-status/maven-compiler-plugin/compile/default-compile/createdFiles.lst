@@ -8,6 +8,7 @@ manejoGson/converter.class
 manejoGson/comentarioConveter.class
 controlador/categoriaControler.class
 modelo/usuarioTag.class
+manejoGson/anuncioConverter.class
 controlador/editorControler.class
 modelo/revista.class
 manejoGson/suscripcionConveter.class
@@ -23,7 +24,9 @@ modelo/meGustaModel.class
 controlador/suscripcionControler.class
 service/controlUsuario.class
 servletReportes/reporteGananciasEServlet.class
+controlador/anuncioImagenControler.class
 controlador/InfoControler.class
+modelo/anuncioModel.class
 modelo/UsuarioNuevo.class
 controlador/edicionControler.class
 servletReportes/reporteComentarioServlet.class
@@ -33,6 +36,7 @@ servletReportes/reporteRevistaPopular.class
 controlador/RevistaControler.class
 servletReportes/reporteSuscripcionesServlet.class
 controlador/comentarioControler.class
+service/controlAnuncios.class
 controlador/RegistroControler.class
 modelo/edicionModel.class
 controlador/permisosControler.class
@@ -51,13 +55,16 @@ reportModels/reporteGanancias.class
 servletReportes/reporteMeGustaServlet.class
 modelo/revistaDAO.class
 servletReportes/reporteComentadas.class
+controlador/anuncioConrtoler.class
 controlador/uploadRevista.class
 manejoGson/usuarioActualizacionConverter.class
 modelo/reporteAdminDAO.class
 controlador/tagControler.class
+servletReportes/reporteAnuncioServlet.class
 modelo/usuarioInformacion.class
 modelo/porcentaje.class
 controlador/LoginControler.class
+reportModels/reporteAnuncios.class
 reportModels/reporteRevistaPopular.class
 service/reporteAdminService.class
 servletReportes/reporteGananciasAdminServlet.class
@@ -69,3 +76,4 @@ service/controlEdicion.class
 conexion/conexionDB.class
 modelo/edicionDAO.class
 service/controlSuscripcion.class
+modelo/anuncioDAO.class

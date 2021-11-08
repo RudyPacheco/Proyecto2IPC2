@@ -1,0 +1,49 @@
+<app-header-admin></app-header-admin>
+
+
+<body>
+    <div class="container contact-form">
+        <form [formGroup]="reporteForm" >
+       
+            <h1 class="text-center">
+                Llene el formulario para generar el reporte 
+            </h1>
+           
+            <div class="row">
+                <div class="col-md-6">
+                    <p>Puede seleccionar un rango de fechas para generar el reporte , si lo deja vacio se tomaran todos los registros
+                
+                    </p>
+                    <div>
+                        <label>De : (fecha) </label>
+                        <input (input)="modificarFechaI($event)" type="date">
+                    </div>
+                    <div>
+                        <label>Hasta :(fecha) </label>
+                        <input  (input)="modificarFechaF($event)" type="date">
+                    </div>
+                    <div class="form-group">
+                        
+                        <a (click)="mostrarReporte()" href={{reportComentario}} target="myFrame"  class="btn btn-info btn-lg btn-block">
+                            Ver Reporte
+                              </a>
+                        <a (click)="descargarReporte()" class="btn btn-success" >descargar</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    
+
+    </div>
+    
+
+    <div class="container" >
+        <div class="card">
+          <iframe name="myFrame" style="width:100%; height:500px;" frameborder="0"></iframe>
+        </div>
+      </div>
+   
+    
+
+</body>
+

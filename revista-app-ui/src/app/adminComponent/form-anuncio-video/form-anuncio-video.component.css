@@ -1,0 +1,46 @@
+body{
+
+    margin-top: 60px;
+}
+
+.container{
+
+    border-radius: 10px;
+	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
+			0 10px 10px rgba(0,0,0,0.22);
+
+}
+
+.form-group{
+    border-radius: 10px;
+    border-color: black;
+}
+
+span{
+ margin-left: 45%;   
+}
+
+input{
+    border-radius: 10px;
+    border-color: black;
+    margin-left: 45%;
+}
+
+.linkV{
+    width: 400px;
+}
+
+p{
+    margin-left: 45%;  
+}
+
+label{
+    margin-left: 45%;
+}
+
+select{
+    margin-left: 45%;
+    border-radius: 10px;
+    border-color: black;
+    width: 250px;
+}

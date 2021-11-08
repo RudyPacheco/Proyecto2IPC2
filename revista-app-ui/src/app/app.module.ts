@@ -57,6 +57,13 @@ import { ReporteGananciasAComponent } from './adminComponent/reporte-ganancias-a
 import { ReportePopularesComponent } from './adminComponent/reporte-populares/reporte-populares.component';
 import { ReporteComentadasComponent } from './adminComponent/reporte-comentadas/reporte-comentadas.component';
 import { RevistasPageComponent } from './adminComponent/revistas-page/revistas-page.component';
+import { AnunciosPageComponent } from './adminComponent/anuncios-page/anuncios-page.component';
+import { FormAnunciosComponent } from './adminComponent/form-anuncios/form-anuncios.component';
+import { FormAnuncioTextoComponent } from './adminComponent/form-anuncio-texto/form-anuncio-texto.component';
+import { FormAnuncioImagenComponent } from './adminComponent/form-anuncio-imagen/form-anuncio-imagen.component';
+import { FormAnuncioVideoComponent } from './adminComponent/form-anuncio-video/form-anuncio-video.component';
+import { AnuncioViewComponent } from './adminComponent/anuncio-view/anuncio-view.component';
+import { ReporteAnuncioComponent } from './adminComponent/reporte-anuncio/reporte-anuncio.component';
 
 
 
@@ -107,6 +114,13 @@ import { RevistasPageComponent } from './adminComponent/revistas-page/revistas-p
     ReportePopularesComponent,
     ReporteComentadasComponent,
     RevistasPageComponent,
+    AnunciosPageComponent,
+    FormAnunciosComponent,
+    FormAnuncioTextoComponent,
+    FormAnuncioImagenComponent,
+    FormAnuncioVideoComponent,
+    AnuncioViewComponent,
+    ReporteAnuncioComponent,
 
   ],
   imports: [
