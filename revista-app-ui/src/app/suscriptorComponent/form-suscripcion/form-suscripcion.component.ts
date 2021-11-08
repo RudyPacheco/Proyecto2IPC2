@@ -6,6 +6,7 @@ import { revistaService } from 'src/app/services/revista/revista.service';
 import { suscripcionService } from 'src/app/services/suscripcion/suscripcion.service';
 import { suscripcion } from 'src/models/auth/suscripcion/suscripcion.model';
 import { revista } from 'src/models/revista/revista.model';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-form-suscripcion',
@@ -58,12 +59,27 @@ export class FormSuscripcionComponent implements OnInit {
     this.suscripcionN.revista=this.revistaR;
     this.suscripcionN.nombreUsuario=this.loginSerivce.usuario.usuario;
     this.suscripcionService.generarSuscripcion(this.suscripcionN).subscribe((create:suscripcion)=>{
+      this.popAfirmation();
       this.router.navigate(['Suscripciones']);
     })
 
   }
 
+  public popAfirmation(){
+    Swal.fire(
+      'Suscripcion realizada',
+      'Ya estas suscrito',
+      'success'
+    )
+  }
 
+  public popErro(){
+    Swal.fire(
+      'Error',
+      'Ocurrio algun error',
+      'error'
+    )
+  }
 
 
 }

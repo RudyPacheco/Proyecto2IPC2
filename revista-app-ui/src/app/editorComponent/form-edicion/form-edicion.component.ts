@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { edicionService } from 'src/app/services/revista/edicion.service';
 import { revista } from 'src/models/revista/revista.model';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-form-edicion',
@@ -49,6 +50,7 @@ export class FormEdicionComponent implements OnInit {
     if (this.selectedFile!==null) {
       this.edicionService.guardarRevista(this.selectedFile).subscribe((data)=>{
         console.log("edicion enviada");
+        this.popAfirmation();
         this.router.navigate(['Edicones']);
       })
     }
@@ -58,5 +60,22 @@ export class FormEdicionComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  public popAfirmation(){
+    Swal.fire(
+      'Edicion publicada',
+      '',
+      'success'
+    )
+  }
+
+  public popErro(){
+    Swal.fire(
+      'Error',
+      'Ocurrio algun error',
+      'error'
+    )
+  }
+
 
 }

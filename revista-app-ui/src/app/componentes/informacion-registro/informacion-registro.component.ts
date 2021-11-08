@@ -7,6 +7,7 @@ import { NgModule } from '@angular/core';
 import { UsuarioInfo } from 'src/models/register/usuarioInformacion';
 import { Router } from '@angular/router';
 import { etiquetasService } from 'src/app/services/informacion/etiquetas.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-informacion-registro',
@@ -53,6 +54,7 @@ export class InformacionRegistroComponent implements OnInit {
      // if (this.registroService.getUsuario().tipoCuenta==1) {
        // this.router.navigate(['TagSelector'])
       //}else if (this.registroService.getUsuario().tipoCuenta==2) {
+        this.popAfirmation();
         this.router.navigate(['login'])
       //}
 
@@ -62,7 +64,7 @@ export class InformacionRegistroComponent implements OnInit {
 
     },
     (error: any)=>{
-  
+      this.popErro();
     });
    //console.log(this.a);
    // this.nuevoUsuario=this.registroService.getUsuario();
@@ -81,6 +83,23 @@ export class InformacionRegistroComponent implements OnInit {
       //this.options=this.options.concat(tags);
       this.options=tags;
     });
+  }
+
+
+  public popAfirmation(){
+    Swal.fire(
+      'Registro completo',
+      'Inicia sesion',
+      'success'
+    )
+  }
+
+  public popErro(){
+    Swal.fire(
+      'Error',
+      'Ocurrio algun error',
+      'error'
+    )
   }
 
 }

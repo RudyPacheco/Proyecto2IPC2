@@ -6,6 +6,7 @@ import { editorService } from 'src/app/services/revista/editorInfo.service';
 import { revistaService } from 'src/app/services/revista/revista.service';
 import { permisosModel } from 'src/models/interacciones/permisos.model';
 import { revista } from 'src/models/revista/revista.model';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-form-permisos',
@@ -65,7 +66,9 @@ export class FormPermisosComponent implements OnInit {
 
       console.log(this.permisoM);
      this.interaccionService.actualizarPermisos(this.permisoM).subscribe((data)=>{
-       console.log("permisos actualizados")
+       console.log("permisos actualizados");
+       this.popAfirmation();
+       this.router.navigate(['Mis/Revistas'])
      })
 
    }
@@ -74,5 +77,22 @@ export class FormPermisosComponent implements OnInit {
   ngOnInit(): void {
     
   }
+
+  public popAfirmation(){
+    Swal.fire(
+      'Permisos cambiados',
+      '',
+      'success'
+    )
+  }
+
+  public popErro(){
+    Swal.fire(
+      'Error',
+      'Ocurrio algun error',
+      'error'
+    )
+  }
+
 
 }

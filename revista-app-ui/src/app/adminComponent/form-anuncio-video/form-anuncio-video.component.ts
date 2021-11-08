@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { anuncioService } from 'src/app/services/anuncio/anuncio.service';
 import { etiquetasService } from 'src/app/services/informacion/etiquetas.service';
 import { anuncioModel } from 'src/models/anuncio/anuncio.model';
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-form-anuncio-video',
@@ -17,7 +20,7 @@ export class FormAnuncioVideoComponent implements OnInit {
   tagsSelected:string[]=[];
   anuncioM!:anuncioModel;
 
-  constructor(private builder:FormBuilder,private tagService:etiquetasService,private anuncioService:anuncioService) {
+  constructor(private builder:FormBuilder,private tagService:etiquetasService,private anuncioService:anuncioService,private router:Router) {
     this.anuncioForm=this.builder.group({
       anunciante:['',Validators.required],
       video:['',Validators.required],
@@ -48,11 +51,13 @@ export class FormAnuncioVideoComponent implements OnInit {
 
     this.anuncioService.generarRegistro(this.anuncioM).subscribe((data)=>{
       console.log("se envio al bakend");
-
+      this.popAfirmation();
+      this.router.navigate(['InicioAdmin']);
 
     },
     (error: any)=>{
-      console.log("error")
+      console.log("error");
+      this.popErro();
     }
     );
 
@@ -73,6 +78,23 @@ export class FormAnuncioVideoComponent implements OnInit {
      this.tagsSelected.push(this.anuncioForm.get("etiquetaS")?.value);
     }
 
+  }
+
+
+  public popAfirmation(){
+    Swal.fire(
+      'Anuncio Publicado',
+      'Se comenzara a mostrar',
+      'success'
+    )
+  }
+  
+  public popErro(){
+    Swal.fire(
+      'Error',
+      'Ocurrio algun error',
+      'error'
+    )
   }
 
 }

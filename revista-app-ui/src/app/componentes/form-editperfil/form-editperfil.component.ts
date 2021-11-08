@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { etiquetasService } from 'src/app/services/informacion/etiquetas.service';
 import { loginServices } from 'src/app/services/login/login.services';
 import { edicionPerfilService } from 'src/app/services/registro/actualizarPerfil.service';
@@ -7,6 +8,7 @@ import { usuarioLoged } from 'src/models/auth/usuarioLoged';
 import { permisosModel } from 'src/models/interacciones/permisos.model';
 import { UsuarioNuevo } from 'src/models/register/newUsuario';
 import { usaurioActualizacion } from 'src/models/register/usuarioActualizacion';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-form-editperfil',
@@ -23,7 +25,7 @@ export class FormEditperfilComponent implements OnInit {
   
 
 
-  constructor(private loginService:loginServices,private tagsService:etiquetasService,private builder:FormBuilder,private actualizarUsuarioService:edicionPerfilService ) {
+  constructor(private loginService:loginServices,private tagsService:etiquetasService,private builder:FormBuilder,private actualizarUsuarioService:edicionPerfilService,private router:Router ) {
     this.usuarioR=this.loginService.usuario;
     this.tagsSelected=this.usuarioR.etiquetasInteres;
 
@@ -70,13 +72,39 @@ export class FormEditperfilComponent implements OnInit {
 
      console.log(this.usaurioNuevo);
     this.actualizarUsuarioService.actualizarDatos(this.usaurioNuevo).subscribe((date)=>{
-      console.log("se envio al backend")
+      console.log("se envio al backend");
+      if (this.loginService.usuario.tipoCuenta==1) {
+        this.router.navigate(['MiPerfilS'])
+
+      }else if (this.loginService.usuario.tipoCuenta==2) {
+        this.router.navigate(['MiPerfilE'])
+      }
+      
+
+      this.popAfirmation();
     })
    }
 
 
 
   ngOnInit(): void {
+  }
+
+
+  public popAfirmation(){
+    Swal.fire(
+      'Cambios guardados',
+      '',
+      'success'
+    )
+  }
+
+  public popErro(){
+    Swal.fire(
+      'Error',
+      'Ocurrio algun error',
+      'error'
+    )
   }
 
 }

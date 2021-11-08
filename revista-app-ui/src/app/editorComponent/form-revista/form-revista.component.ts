@@ -7,6 +7,7 @@ import { loginServices } from 'src/app/services/login/login.services';
 import { registroServices } from 'src/app/services/registro/registro.service';
 import { revistaService } from 'src/app/services/revista/revista.service';
 import { revista } from 'src/models/revista/revista.model';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-form-revista',
@@ -105,6 +106,7 @@ export class FormRevistaComponent implements OnInit {
     if (this.selectedFile!==null) {
       this.revistaService.guardarRevista(this.selectedFile).subscribe((data)=>{
         console.log("revista enviada")
+        this.popAfirmation();
         this.router.navigate(['inicioED']);
       })
     }
@@ -134,6 +136,21 @@ export class FormRevistaComponent implements OnInit {
 
   }
 
+  public popAfirmation(){
+    Swal.fire(
+      'Revista publicada',
+      '',
+      'success'
+    )
+  }
+
+  public popErro(){
+    Swal.fire(
+      'Error',
+      'Ocurrio algun error',
+      'error'
+    )
+  }
 
 
 }

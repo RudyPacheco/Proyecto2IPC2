@@ -16,30 +16,22 @@ body{
     border-color: black;
 }
 
-span{
- margin-left: 45%;   
-}
+
 
 input{
     border-radius: 10px;
     border-color: black;
-    margin-left: 45%;
+
 }
 
 .linkV{
     width: 400px;
 }
 
-p{
-    margin-left: 45%;  
-}
 
-label{
-    margin-left: 45%;
-}
 
 select{
-    margin-left: 45%;
+ 
     border-radius: 10px;
     border-color: black;
     width: 250px;

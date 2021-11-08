@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { anuncioService } from 'src/app/services/anuncio/anuncio.service';
 import { etiquetasService } from 'src/app/services/informacion/etiquetas.service';
 import { anuncioModel } from 'src/models/anuncio/anuncio.model';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-form-anuncio-imagen',
@@ -63,8 +64,9 @@ export class FormAnuncioImagenComponent implements OnInit {
  enviarImagen(){
    if (this.selectedFile!=null) {
     this.anuncioService.guardarImagen(this.selectedFile).subscribe(()=>{
-      console.log("anuncio guardado")
+      console.log("anuncio guardado");
       this.router.navigate(['InicioAdmin']);
+      this.popAfirmation();
     });
    }
 
@@ -94,5 +96,22 @@ export class FormAnuncioImagenComponent implements OnInit {
    }
 
  }
+
+
+ public popAfirmation(){
+  Swal.fire(
+    'Anuncio Publicado',
+    'Se comenzara a mostrar',
+    'success'
+  )
+}
+
+public popErro(){
+  Swal.fire(
+    'Error',
+    'Ocurrio algun error',
+    'error'
+  )
+}
 
 }
